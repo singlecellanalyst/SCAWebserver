@@ -10,7 +10,6 @@ RUN Rscript -e 'install.packages(c("shiny","shinyjs","shinyWidgets","shinyscreen
 RUN Rscript -e 'BiocManager::install(c("Seurat","monocle","SingleCellExperiment","scRepertoire","powerTCR","SingleR","ComplexHeatmap")'
 
 COPY /DB/ /srv/shiny-server/app/DB 
-COPY global.R /srv/shiny-server/app/
 COPY server.R /srv/shiny-server/app/
 COPY ui.R /srv/shiny-server/app/
 
