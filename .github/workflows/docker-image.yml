@@ -3,7 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-    paths: [ "Analysis_Server/Sca_scImmune/**" ]
+    paths:
+    - Analysis_Server/Sca_scImmune/**
   pull_request:
     branches: [ "main" ]
 
