@@ -1,8 +1,8 @@
 FROM rocker/shiny:latest
 
-COPY Sca_scImmune/server.R /srv/shiny-server/sca_scimmune/
-COPY Sca_scImmune/ui.R /srv/shiny-server/sca_scimmune/
-COPY Sca_scImmune/DB/ /srv/shiny-server/sca_scimmune/DB 
+COPY server.R /srv/shiny-server/sca_scimmune/
+COPY ui.R /srv/shiny-server/sca_scimmune/
+COPY DB/ /srv/shiny-server/sca_scimmune/DB 
 
 RUN apt-get update && \
     apt-get upgrade -y && \
