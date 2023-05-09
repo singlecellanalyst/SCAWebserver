@@ -1,8 +1,8 @@
 FROM rocker/shiny:latest
 
-COPY server.R /srv/shiny-server/app/
-COPY ui.R /srv/shiny-server/app/
-COPY /DB/ /srv/shiny-server/app/DB 
+COPY Sca_scImmune/server.R /srv/shiny-server/app/
+COPY Sca_scImmune/ui.R /srv/shiny-server/app/
+COPY Sca_scImmune/DB/ /srv/shiny-server/app/DB 
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -17,7 +17,7 @@ RUN Rscript -e 'BiocManager::install(c("Seurat","monocle","SingleCellExperiment"
 RUN cd /srv/shiny-server/ && \
     sudo chown -R shiny:shiny /srv/shiny-server/app
 
-COPY shiny-customized.config /etc/shiny-server/shiny-server.conf
+COPY Sca_scImmune/shiny-customized.config /etc/shiny-server/shiny-server.conf
 
 EXPOSE 3838
 
