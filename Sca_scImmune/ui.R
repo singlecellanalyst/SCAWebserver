@@ -73,7 +73,7 @@ shinyUI(fluidPage(
                 ),
                 # downloadButton("downloadExample1", label = "scImmune Input Example"),
                 # downloadButton("example2", label = "gene-cell.csv example"),
-                actionButton("example1", label = "scImmune Input Example", onclick=paste0("window.open('https://www.dropbox.com/s/jf7ezqjfbs1ggox/SCA_scImmune_Example_From_10X.zip?dl=1','_self')")),
+                actionButton("example1", label = "scImmune Input Example", onclick=paste0("window.open('https://www.dropbox.com/s/il954lexu6hn6fe/SCA_scImmune_Example_From_10X.zip?dl=1','_self')")),
                 em("Alternatively, right click on the button and choose 'Save Link As'"),
                 a(
                   "(dataset taken from: 10X Genomics).",
@@ -98,7 +98,7 @@ shinyUI(fluidPage(
                     )
                 ),
                 # downloadButton("downloadExample2", label = "scImmune Metadata Example"),
-                actionButton("example2", label = "scImmune Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/s/iu1uycy1ovsm0k6/SCA_scImmune_Metadata_Example.csv?dl=1','_self')")),
+                actionButton("example2", label = "scImmune Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/s/0lbxq9puegb714i/SCA_scImmune_Metadata_Example.csv?dl=1','_self')")),
                 em("Alternatively, right click on the button and save link as."),
                 br(),
                 br(),
