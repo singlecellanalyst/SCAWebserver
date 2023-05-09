@@ -1,8 +1,8 @@
 FROM rocker/shiny:latest
 
-COPY DB/ /srv/shiny-server/app/DB 
 COPY server.R /srv/shiny-server/app/
 COPY ui.R /srv/shiny-server/app/
+COPY /DB/ /srv/shiny-server/app/DB 
 
 RUN apt-get update && \
     apt-get upgrade -y && \
