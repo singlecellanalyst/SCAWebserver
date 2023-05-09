@@ -7,6 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN Rscript -e 'install.packages(c("shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","webshot","ggthemes","plot3D","ggalluvial","dplyr","alluvial","harmony","ggrepel","RColorBrewer","immunarch","circlize","scales","gridExtra","hdf5r","ggraph","assertthat","DT","ggplot2","patchwork","ggridges","reshape2","xlsx"))'
+
 RUN Rscript -e 'BiocManager::install(c("Seurat","monocle","SingleCellExperiment","scRepertoire","powerTCR","SingleR","ComplexHeatmap")'
 
 COPY /DB/ /srv/shiny-server/app/DB 
