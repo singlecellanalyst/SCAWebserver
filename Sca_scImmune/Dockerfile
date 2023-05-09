@@ -3,7 +3,7 @@ FROM rocker/shiny:latest
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean && \
-    apt-get install -y git libxml2-dev libmagick++-dev && \
+    apt-get install -y git libxml2-dev libmagick++-dev gfortran-7 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN Rscript -e 'install.packages(c("shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","webshot","ggthemes","plot3D","ggalluvial","dplyr","alluvial","harmony","ggrepel","RColorBrewer","immunarch","circlize","scales","gridExtra","hdf5r","ggraph","assertthat","DT","ggplot2","patchwork","ggridges","reshape2","xlsx"))'
