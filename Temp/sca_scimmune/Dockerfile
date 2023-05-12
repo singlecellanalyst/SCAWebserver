@@ -22,4 +22,3 @@ COPY shiny-customized.config /etc/shiny-server/shiny-server.conf
 EXPOSE 3838
 
 CMD ["/usr/bin/shiny-server"]
-
