@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/sca-scimmune
+  IMAGE_NAME: ${{ github.repository_owner }}/scascimmune
 
 jobs:
   build-and-push-image:
