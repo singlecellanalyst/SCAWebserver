@@ -1,8 +1,8 @@
 FROM rocker/shiny:latest
 
-COPY server.R /srv/shiny-server/sca_scimmune/
-COPY ui.R /srv/shiny-server/sca_scimmune/
-COPY DB/ /srv/shiny-server/sca_scimmune/DB 
+COPY server.R /srv/shiny-server/scascimmune/
+COPY ui.R /srv/shiny-server/scascimmune/
+COPY DB/ /srv/shiny-server/scascimmune/DB 
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -15,7 +15,7 @@ RUN Rscript -e 'install.packages(c("igraph","immunarch","shiny","shinyjs","shiny
 RUN Rscript -e 'BiocManager::install(c("Seurat","monocle","SingleCellExperiment","scRepertoire","powerTCR","SingleR","ComplexHeatmap"))'
 
 RUN cd /srv/shiny-server/ && \
-    sudo chown -R shiny:shiny /srv/shiny-server/sca_scimmune
+    sudo chown -R shiny:shiny /srv/shiny-server/scascimmune
 
 COPY shiny-customized.config /etc/shiny-server/shiny-server.conf
 
