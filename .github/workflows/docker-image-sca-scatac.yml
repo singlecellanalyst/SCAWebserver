@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/app
+  IMAGE_NAME: ${{ github.repository_owner }}/scascatac
 
 jobs:
   build-and-push-image:
