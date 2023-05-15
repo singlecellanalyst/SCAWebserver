@@ -1,10 +1,9 @@
 ###########################################################################################################################
 # SingleCellAnalyst.org
 # Pipeline: scImmune Analysis Pipeline
-# Version: V1.0.0
+# Version: V1.1.0
 # Creator: Lu Pan, Karolinska Institutet, lu.pan@ki.se
-# Date: 2021-02-01
-# Last update: 2022-01-20
+# Last-update date: 2023-05-15
 # All Rights Reserved
 ###########################################################################################################################
 # input <- NULL

@@ -1,0 +1,11 @@
+file;Sample_ID;Batch;Group
+Activation_1.fcs;S1;1;DiseaseA
+Activation_2.fcs;S2;1;DiseaseA
+Activation_3.fcs;S3;2;Healthy
+Activation_4.fcs;S4;2;Healthy
+Activation_5.fcs;S5;3;DiseaseB
+Activation_6.fcs;S6;3;DiseaseB
+Activation_7.fcs;S7;4;DiseaseA
+Activation_8.fcs;S8;4;DiseaseB
+Activation_9.fcs;S9;1;DiseaseA
+Activation_10.fcs;S10;1;DiseaseA

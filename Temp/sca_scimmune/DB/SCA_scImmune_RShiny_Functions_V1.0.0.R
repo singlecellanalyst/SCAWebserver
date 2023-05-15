@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
 ##############################################################################
-#             SCA scCNV Analysis Package
+#             SCA scImmune Analysis Package
 #             SingleCellAnalyst.org Production
 #             Purpose: Multi-Omics Single Cell Analysis Pipeline Functions
-#             Version: V1.0.0
+#             Version: V1.1.0
 #             Author: Lu Pan
-#             Date: 2020-02-01
+#             Last-update date: 2023-05-15
 ##############################################################################
 
 Packages <- c("Seurat","ggplot2","patchwork","dplyr","ggridges",
