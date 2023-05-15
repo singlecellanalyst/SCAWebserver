@@ -1,0 +1,11 @@
+﻿File;Sample_id;Individual_id;Batch;Group
+PBMC8_30min_patient1_BCR-XL.fcs;BCRXL1;Patient1;1;BCRXL
+PBMC8_30min_patient1_Reference.fcs;Ref1;Patient1;1;Ref
+PBMC8_30min_patient2_BCR-XL.fcs;BCRXL2;Patient2;2;BCRXL
+PBMC8_30min_patient2_Reference.fcs;Ref2;Patient2;2;Ref
+PBMC8_30min_patient3_BCR-XL.fcs;BCRXL3;Patient3;3;BCRXL
+PBMC8_30min_patient3_Reference.fcs;Ref3;Patient3;3;Ref
+PBMC8_30min_patient4_BCR-XL.fcs;BCRXL4;Patient4;4;BCRXL
+PBMC8_30min_patient4_Reference.fcs;Ref4;Patient4;4;Ref
+PBMC8_30min_patient5_BCR-XL.fcs;BCRXL5;Patient5;5;BCRXL
+PBMC8_30min_patient5_Reference.fcs;Ref5;Patient5;5;Ref

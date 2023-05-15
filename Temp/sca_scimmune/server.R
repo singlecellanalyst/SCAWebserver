@@ -6,25 +6,6 @@
 # Last-update date: 2023-05-15
 # All Rights Reserved
 ###########################################################################################################################
-# input <- NULL
-# input$files <- data.frame(name = "SCA_scImmune_Example_From_10X.zip",
-#                           size = 91868218,
-#                           type = "application/zip",
-#                           datapath = "DB/SCA_scImmune_Example_From_10X.zip")
-# input$files2 <- data.frame(name = "SCA_2Consensus_scImmune_Example_From_10X.zip",
-#                            size = 91868218,
-#                            type = "application/zip",
-#                            datapath = "DB/SCA_2Consensus_scImmune_Example_From_10X.zip")
-# input$files3 <- data.frame(name = "SCA_3scRNASeq_scImmune_Example_From_10X.zip",
-#                            size = 91868218,
-#                            type = "application/zip",
-#                            datapath = "DB/SCA_3scRNASeq_scImmune_Example_From_10X.zip")
-#
-# input$phenodata <- NULL
-# input$phenodata$datapath <- "DB/SCA_scImmune_Metadata_Example.csv"
-# input$project_name <- "scImmune_Example"
-# input$files <- input$files
-
 library(BiocManager)
 options(repos = BiocManager::repositories())
 options(shiny.maxRequestSize=30000*1024^2)
@@ -61,7 +42,6 @@ library("ggraph")
 library("assertthat")
 library("DT")
 library("httr")
-# library("SeuratData")
 
 Sys.setenv("DISPLAY"=":0")
 
@@ -73,7 +53,6 @@ hpca.se <- readRDS(url("https://www.dropbox.com/s/2xqa8a8ussh0d2n/HumanPrimaryCe
 
 ctime <- format(Sys.time(), format = "%Y%m%d%H%M%S", tz = "Europe/Stockholm")
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
   values <- reactiveValues(proceed = 1)
   
@@ -124,24 +103,14 @@ shinyServer(function(input, output, session) {
     contig_pheno <- pheno_data[grep("contig", pheno_data$DATA_TYPE, ignore.case = T),]
     consensus_pheno <- pheno_data[grep("consensus", pheno_data$DATA_TYPE, ignore.case = T),]
     rna_pheno <- pheno_data[grep("rna", pheno_data$DATA_TYPE, ignore.case = T),]
-    
-    # consensus_files <- unzip(input$files2$datapath, exdir = consensus_dir)
-    # consensus_files <- consensus_files[grep("_MACOSX",consensus_files, ignore.case = T, invert = T)]
-    # if(input$files3$datapath != ""){
-    #   rna_files <- unzip(input$files3$datapath, exdir = rna_dir)
-    #   rna_files <- rna_files[grep("_MACOSX",rna_files, ignore.case = T, invert = T)]
-    # }
-    
     removeModal()
     
-    # results <- readRDS("results.RDS")
     #######################################################################################################################################
     showModal(modalDialog("Reading data..", footer=NULL))
     
     contig_list <- NULL
     for(i in 1:nrow(contig_pheno)){
       contig_list[[i]] <- sample_files[grep(contig_pheno$FILE[i],sample_files, ignore.case = T)]
-      # system(paste("mv ", contig_list[[i]], " ",contig_dir,"/", sep = ""))
       system(paste("mv \"", contig_list[[i]], "\" \"",contig_dir,"/\"", sep = ""))
       contig_list[[i]] <- read.csv(paste(contig_dir,"/",contig_pheno$FILE[i],sep = ""), header = T, sep = ",")
       names(contig_list)[i] <- contig_pheno[i,"SID"]
@@ -159,41 +128,16 @@ shinyServer(function(input, output, session) {
       }
     }
     
-    # consensus_list <- NULL
-    # # consensus_pheno <- pheno_data[grep("consensus", pheno_data$DATA_TYPE, ignore.case = T),]
-    # for(i in 1:nrow(consensus_pheno)){
-    #   consensus_list[[i]] <- sample_files[grep(consensus_pheno$FILE[i],sample_files, ignore.case = T)]
-    #   system(paste("mv ", consensus_list[[i]], " ",consensus_dir,"/", sep = ""))
-    #   consensus_list[[i]] <- read.csv(paste(consensus_dir,"/",consensus_pheno$FILE[i],sep = ""), header = T, sep = ",")
-    #   names(consensus_list)[i] <- consensus_pheno[i,"SID"]
-    # }
-    # 
-    # consensus_underscore <- as.numeric(lapply(consensus_list, function(x){ x<- length(grep("_", x$barcode))}))
-    # consensus_hyphen <- as.numeric(lapply(consensus_list, function(x){ x<- length(grep("-", x$barcode))}))
-    
-    # if(length(which(contig_underscore == 0))>1 & length(which(contig_hyphen > 0)) == length(consensus_list)){
-    #   consensus_list <- consensus_list
-    # } else{
-    #   
-    #   for (i in seq_along(consensus_list)) {
-    #     consensus_list[[i]] <- stripBarcode(consensus_list[[i]], column = 1, connector = "_",
-    #                                         num_connects = max(as.numeric(lapply(consensus_list, function(x){ x<- length(grep("_", x$barcode))})))+1)
-    #   }
-    #   
-    # }
-    
     if(nrow(rna_pheno) > 0){
       rna_list <- NULL
       for(i in 1:nrow(rna_pheno)){
         rna_list[[i]] <- sample_files[grep(rna_pheno$FILE[i],sample_files, ignore.case = T)]
-        # system(paste("mv ", rna_list[[i]], " ",rna_dir,"/", sep = ""))
         system(paste("mv \"", rna_list[[i]], "\" \"",rna_dir,"/\"", sep = ""))
       }
       rna_list <- list.files(rna_dir, full.names = T)
       rna_list <- rna_list[grep("_MACOSX",rna_list, ignore.case = T, invert = T)]
       print("rna_list:")
       print(rna_list)
-      # system(paste("ls -lrt ",rna_list[1], sep = ""), intern = T)
     }
     
     contig_monarch <- repLoad(contig_dir,.mode = "paired")
@@ -237,48 +181,6 @@ shinyServer(function(input, output, session) {
     p1 <- vis(imm_ov1, .text.size = 6) + ggtitle("CLONOTYPES SHARED\nMORISITA OVERLAP INDEX (NT+VDJ)")
     p2 <- vis(imm_ov2, .text.size = 6) + ggtitle("CLONOTYPES SHARED\nMORISITA OVERLAP INDEX (AA)")
     p7plots  <- p1 + p2
-    
-    # p8plots <- NULL
-    # if(length(grep("TRUE",apply(imm_ov2, 1, function(x){x == 0}))) > 1 | (nrow(imm_ov2) <= 3)){
-    #   
-    #   imm_ov_list <- split(contig_monarch$meta, contig_monarch$meta$CELL_TYPE)
-    #   imm_ov_list <- lapply(imm_ov_list, function(x){x$Sample})
-    #   imm_ov_subsets <- NULL
-    #   imm_ov_subsets_analysis <- NULL
-    #   for(n in 1:length(imm_ov_list)){
-    #     
-    #     imm_ov_subsets[[n]] <- repOverlap(contig_monarch$data[which(names(contig_monarch$data) %in% imm_ov_list[[n]])], .method = "morisita", .verbose = F, .col = "nt+v+d+j")
-    #     imm_ov_subsets[[n]]
-    #     
-    #     if((length(grep("TRUE",apply(imm_ov_subsets[[n]], 2, function(x){x == 0}))) > 1) | (nrow(imm_ov_subsets[[n]]) > 1)){
-    #       print("Some of the repertoire overlaps are zero, removing samples with 0 overlaps with >= 1 sample..")
-    #       diag(imm_ov_subsets[[n]]) <- 1
-    #       current <- imm_ov_subsets[[n]]
-    #       # current <- imm_ov_subsets[[n]][apply(imm_ov_subsets[[n]],1, function(col) all(col !=0 )),]
-    #       if(nrow(current)>0){
-    #         diag(current) <- NA
-    #         imm_ov_subsets_analysis[[n]] <- data.frame(vegan::metaMDS(comm = dist(current))$points)
-    #         imm_ov_subsets_analysis[[n]]$Sample <- row.names(imm_ov_subsets_analysis[[n]])
-    #         p <- NULL
-    #         p <- ggplot(imm_ov_subsets_analysis[[n]], aes(x = MDS1, y = MDS2, color = Sample, label = Sample)) +
-    #           # geom_label_repel(box.padding = 0.2, max.overlaps = Inf, size = 2.2, show.legend = F)+
-    #           geom_text(aes(label=Sample), size = 8)+
-    #           geom_point(size = 10, alpha = 0.6)+
-    #           theme_bw() +
-    #           scale_color_manual(values = sample_colors)
-    #         p <- adjust_theme(p)
-    #         p8plots[[n]] <- p
-    #         names(p8plots)[n] <- names(imm_ov_list)[n]
-    #       }
-    #     }
-    #   }
-    # }else{
-    #   sample_mds <- repOverlapAnalysis(imm_ov2, "mds")
-    #   p <- repOverlapAnalysis(imm_ov2, "mds+kmeans") %>% vis()
-    #   p <- adjust_theme(p)
-    #   p8plots[[1]] <- p
-    #   names(p8plots)[1] <- "ALL_DATA_NONZERO"
-    # }
     
     # Build public repertoire table using CDR3 nucleotide sequences
     pr.ntv <- pubRep(contig_monarch$data, .col = "nt+v", .quant = "count", .verbose = F)
@@ -427,14 +329,6 @@ shinyServer(function(input, output, session) {
     # kmer
     
     p16data <- repOverlap(contig_monarch$data, .col = "v+d+j")
-    # vis(p16data, .plot = "circos", annotationTrack = c("grid", "axis"),preAllocateTracks = 1, grid.col = sample_colors, transparency = 0.2)
-    # title(paste(project_name,": Repertoire Overlaps (CDR3 AA)", sep = ""), cex = 6)
-    # circos.track(track.index = 1, panel.fun = function(x, y) {
-    #   sector.name = get.cell.meta.data("sector.index")
-    #   circos.text(CELL_META$xcenter, 0.8, CELL_META$sector.index,cex = 1,
-    #               facing = "bending.outside", niceFacing = TRUE, adj = c(0, 0.5))
-    # }, bg.border = NA)
-    
     ov <- scale(p16data)
     ov <- t(scale(t(ov)))
     ov[is.na(ov)] <- 0
@@ -453,7 +347,7 @@ shinyServer(function(input, output, session) {
       bcr_list <- pheno_data[grepl("B_Cell|BCell|B.*Cell|BCR", pheno_data$CELL_TYPE, ignore.case = T) & grepl("contig", pheno_data$DATA_TYPE, ignore.case = T),"SID"]
     }
     
-    # Very slow, take note of this
+    # Very slow, package problem
     bcr_pheno <- pheno_data[grepl("B_Cell|BCell|B.*Cell|BCR", pheno_data$CELL_TYPE, ignore.case = T) & grepl("contig", pheno_data$DATA_TYPE, ignore.case = T),]
     if(length(bcr_list) > 0){
       contig_bcr <- combineBCR(contig_list[which(names(contig_list) %in% bcr_list)], 
@@ -463,7 +357,6 @@ shinyServer(function(input, output, session) {
         contig_bcr[[i]]$ID <- bcr_pheno[match(bcr_list,bcr_pheno$SID),"INDIVIDUAL_ID"][i]
       }
       names(contig_bcr) <- bcr_pheno[match(bcr_list,bcr_pheno$SID),"SID"]
-      # ID = bcr_pheno[match(bcr_list,bcr_pheno$SAMPLE_ID),"INDIVIDUAL_ID"])
       contig_table$BCR <- contig_bcr
     }else{
       contig_table$BCR <- NULL
@@ -504,9 +397,7 @@ shinyServer(function(input, output, session) {
       if(length(grep("TRUE", tgd_presence, ignore.case = T)) > 0){
         contig_tcr_tgd <- combineTCR(contig_tcr[which(tgd_presence == "TRUE")],
                                      samples = pheno_data[match(names(contig_tcr[which(tgd_presence == "TRUE")]),pheno_data$SAMPLE_ID),"SID"],
-                                     # samples = pheno_data[match(names(contig_tcr[which(tgd_presence == "TRUE")]),pheno_data$SAMPLE_ID),"PAIR_ID"],
                                      removeNA = TRUE,
-                                     # ID = pheno_data[match(names(contig_tcr[which(tgd_presence == "TRUE")]),pheno_data$SAMPLE_ID),"INDIVIDUAL_ID"],
                                      cells = "T-GD")
         for(i in 1:length(contig_tcr_tgd)){
           contig_tcr_tgd[[i]]$ID <- pheno_data[match(names(contig_tcr[which(tgd_presence == "TRUE")]),pheno_data$SID),"SID"][i]
@@ -517,10 +408,6 @@ shinyServer(function(input, output, session) {
       }
     }
     
-    # contig_bcr
-    # contig_tcr_tab
-    # contig_tcr_tgd
-    # subset <- subsetContig(contig_bcr, name = "sample", variables = c("PX", "PY"))
     p18plots <- NULL
     p19data <- NULL
     p20plots <- NULL
@@ -560,7 +447,6 @@ shinyServer(function(input, output, session) {
         p18plots[[length(p18plots)+1]] <- (p1|p2)+plot_annotation(title = paste(current_name, " CLONOTYPE ABUNDANCE (VDJC GENE + CDR3 NT)", sep = ""),theme = theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5)))
         names(p18plots)[length(p18plots)] <- current_name
         
-        # abundance_contig <- abundanceContig(contig_table[[i]], cloneCall = "gene+nt", exportTable = T)
         current <- abundanceContig(contig_table[[i]], cloneCall = "aa", exportTable = T)
         p19data[[length(p19data)+1]] <- current[order(current$Abundance, decreasing = T),]
         names(p19data)[length(p19data)] <- current_name
@@ -607,7 +493,6 @@ shinyServer(function(input, output, session) {
         k <- k+1
         
         temp <- compareClonotypes(contig_table[[i]],cloneCall="gene", exportTable = T)
-        # temp <- compareClonotypes_debugged(contig_table[[i]], cloneCall = "gene")
         temp <- temp[!unlist(lapply(strsplit(as.character(temp$Clonotypes), split = "_"), function(x){length(x) == length(grep("NA",x))})),]
         temp <- temp[order(temp$Proportion, decreasing = T),]
         temp <- split(temp, temp$Sample)
@@ -617,9 +502,6 @@ shinyServer(function(input, output, session) {
         temp <- do.call(rbind.data.frame, temp)
         
         p21plots[[k]] <- compareClonotypes(contig_table[[i]], clonotypes = unique(as.character(temp$Clonotypes)), cloneCall="gene", graph = "alluvial")
-        # plots[[2]] <- plot_alluvial(temp, x = "Sample", y = "Proportion", fill = "Clonotypes",
-        #                             group = "Clonotypes", stratum = "Clonotypes",
-        #                             alluvium = "Clonotypes", label = "Clonotypes")
         p21plots[[k]] <- adjust_theme(p21plots[[k]], xangle = 0,legend = "bottom", title_size = 15)
         p21plots[[k]] <- p21plots[[k]] + 
           scale_fill_manual(values = colorRampPalette(color_conditions$general)(length(unique(temp$Clonotypes)))) +
