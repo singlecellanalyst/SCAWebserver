@@ -1,8 +1,8 @@
 FROM rocker/shiny:latest
 
-COPY server.R /srv/shiny-server/app/
-COPY ui.R /srv/shiny-server/app/
-COPY DB/ /srv/shiny-server/app/DB 
+COPY server.R /srv/shiny-server/scascatac/
+COPY ui.R /srv/shiny-server/scascatac/
+COPY DB/ /srv/shiny-server/scascatac/DB 
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -17,7 +17,7 @@ RUN Rscript -e 'BiocManager::install(c("Seurat","GenomeInfoDb","motifmatchr","JA
 RUN Rscript -e 'remotes::install_github('satijalab/seurat-wrappers')'
 
 RUN cd /srv/shiny-server/ && \
-    sudo chown -R shiny:shiny /srv/shiny-server/app
+    sudo chown -R shiny:shiny /srv/shiny-server/scascatac
 
 COPY shiny-customized.config /etc/shiny-server/shiny-server.conf
 
