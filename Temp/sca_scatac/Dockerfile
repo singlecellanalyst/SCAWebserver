@@ -10,10 +10,10 @@ RUN apt-get update && \
     apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e 'install.packages(cran <- c("remotes","devtools"))'
-RUN Rscript -e 'remotes::install_github('satijalab/seurat-wrappers', auth_token = "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", force = T)'
+RUN Rscript -e 'install.packages(cran <- c("remotes","devtools","BiocManager","R.utils"))'
+RUN Rscript -e 'remotes::install_github('satijalab/seurat-wrappers', auth_token = "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", force = T)'
 
-RUN Rscript -e 'install.packages(cran <- c("shiny","shinythemes","ggplot2","DT","shinyWidgets","shinyscreenshot","patchwork","dplyr","ggridges","ggthemes","gridExtra","reshape2","ggrepel","scales","xlsx","BiocManager","shinyjs","shinyFiles","shinydashboard","shinyalert","webshot","Signac","ggpubr","cowplot","hdf5r","qlcMatrix","ggseqlogo"))'
+RUN Rscript -e 'install.packages(cran <- c("shiny","shinythemes","ggplot2","DT","shinyWidgets","shinyscreenshot","patchwork","dplyr","ggridges","ggthemes","gridExtra","reshape2","ggrepel","scales","xlsx","shinyjs","shinyFiles","shinydashboard","shinyalert","webshot","Signac","ggpubr","cowplot","hdf5r","qlcMatrix","ggseqlogo"))'
 
 RUN Rscript -e 'BiocManager::install(c("Seurat","GenomeInfoDb","motifmatchr","JASPAR2020","TFBSTools","EnsDb.Hsapiens.v86","BSgenome.Hsapiens.UCSC.hg38","EnsDb.Hsapiens.v75","BSgenome.Hsapiens.UCSC.hg19"))'
 
