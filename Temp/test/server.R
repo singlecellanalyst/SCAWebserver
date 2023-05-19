@@ -1,4 +1,4 @@
-packages <- c("igraph","shiny","shinythemes","ggplot2","DT","shinyWidgets","shinyscreenshot"); lapply(packages, library, character.only = TRUE)
+packages <- c("immunarch","shiny"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
