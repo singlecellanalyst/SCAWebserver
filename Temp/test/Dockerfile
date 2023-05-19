@@ -10,7 +10,7 @@ apt-get clean && \
 apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev && \
 rm -rf /var/lib/apt/lists/*
   
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("devtools","immunarch","igraph","shiny"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("devtools","immunarch","igraph","shiny","BiocManager"))'
 RUN Rscript -e 'BiocManager::install(c("powerTCR"), ask = F)'
 RUN Rscript -e 'devtools::install_github("ncborcherding/scRepertoire", force = T)'
 RUN Rscript -e 'packages <- c("immunarch","igraph","shiny","scRepertoire"); lapply(packages, library, character.only = TRUE)'
