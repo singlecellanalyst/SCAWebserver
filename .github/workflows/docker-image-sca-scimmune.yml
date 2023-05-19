@@ -1,4 +1,4 @@
-name: Create and publish a Docker image to ghcr.io
+name: SCA scImmune Docker Image Build
 
 on:
   push:
