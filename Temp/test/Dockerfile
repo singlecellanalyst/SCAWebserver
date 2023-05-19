@@ -7,7 +7,7 @@ COPY server.R /srv/shiny-server/test/
 RUN apt-get update && \
 apt-get upgrade -y && \
 apt-get clean && \
-apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-dev && \
+apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-dev libhdf5-dev && \
 apt-get install -y tcl tk && \
 rm -rf /var/lib/apt/lists/*
   
