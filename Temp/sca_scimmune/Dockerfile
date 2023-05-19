@@ -7,7 +7,7 @@ COPY DB/ /srv/shiny-server/scascimmune/DB
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean && \
-    apt-get install -y openjdk-12-jre-headless && \
+    apt-get install -y openjdk-17-jre-headless && \
     rm -rf /var/lib/apt/lists/*
 
 RUN Rscript -e 'install.packages(c("xlsx"))'
