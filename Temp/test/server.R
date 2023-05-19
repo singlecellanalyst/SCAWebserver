@@ -1,4 +1,4 @@
-packages <- c("plot3D","igraph","shiny","scRepertoire"); lapply(packages, library, character.only = TRUE)
+packages <- c("plot3D","igraph","shiny"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
