@@ -9,7 +9,7 @@ apt-get upgrade -y && \
 apt-get clean && \
 apt-get install -y openjdk-17-jre-headless && \
 apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-dev libhdf5-dev && \
-apt-get install -y tcl tk && \
+apt-get install -y tcl tk r-base && \
 rm -rf /var/lib/apt/lists/*
   
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"))'
