@@ -13,12 +13,12 @@ apt-get install -y tcl tk && \
 rm -rf /var/lib/apt/lists/*
 
 RUN which java
-RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-17-openjdk-amd64/
+# RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-17-openjdk-amd64/jre
 # ENV LD_LIBRARY_PATH=/usr/lib/jvm/java-17-openjdk-amd64/
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"))'
 
-RUN Rscript -e 'packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'Sys.setenv("JAVA_HOME" = "/usr/lib/jvm/java-17-openjdk-amd64/jre");packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test
