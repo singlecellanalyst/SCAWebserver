@@ -13,11 +13,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-RUN Rscript -e 'install.packages(options(install.packages.compile.from.source = "always");"https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz", type = "both")'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz")'
 
-RUN Rscript -e 'install.packages(cran <- c("devtools","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","remotes","ggplot2","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","dplyr","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","BiocManager","DT","Seurat","rJava"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("devtools","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","remotes","ggplot2","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","dplyr","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","BiocManager","DT","Seurat","rJava"))'
 
-RUN Rscript -e 'BiocManager::install(c("flowCore","limma","Biobase","FlowSOM","ConsensusClusterPlus","ComplexHeatmap"))'
+RUN Rscript -e 'BiocManager::install(c("flowCore","limma","Biobase","FlowSOM","ConsensusClusterPlus","ComplexHeatmap"), ask = F)'
 
 RUN Rscript -e 'packages <- c("shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","remotes","ggplot2","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","dplyr","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","BiocManager","devtools","DT","Seurat","rJava","flowCore","limma","Biobase","FlowSOM","ConsensusClusterPlus","ComplexHeatmap"); lapply(packages, require, character.only = TRUE)'
 
