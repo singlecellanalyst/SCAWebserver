@@ -12,8 +12,8 @@ apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-d
 apt-get install -y tcl tk && \
 rm -rf /var/lib/apt/lists/*
 
-export LD_LIBRARY_PATH=/usr/lib/jvm/jre/lib/amd64:/usr/lib/jvm/jre/lib/amd64/default
-which java
+RUN which java
+ENV LD_LIBRARY_PATH=/usr/lib/jvm/jre/lib/amd64:/usr/lib/jvm/jre/lib/amd64/default
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"))'
 
