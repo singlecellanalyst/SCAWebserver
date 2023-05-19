@@ -13,7 +13,7 @@ apt-get install -y tcl tk && \
 rm -rf /var/lib/apt/lists/*
 
 RUN which java
-ENV LD_LIBRARY_PATH=/usr/lib/jvm/jre/lib/amd64:/usr/lib/jvm/jre/lib/amd64/default
+ENV LD_LIBRARY_PATH=/usr/lib/jvm/java-17-openjdk-amd64/
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"))'
 
