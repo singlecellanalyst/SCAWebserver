@@ -1,4 +1,4 @@
-packages <- c("immunarch","shiny"); lapply(packages, library, character.only = TRUE)
+packages <- c("immunarch","shiny","scRepertoire"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
