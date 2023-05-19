@@ -7,7 +7,7 @@ COPY server.R /srv/shiny-server/test/
 RUN apt-get update && \
 apt-get upgrade -y && \
 apt-get clean && \
-apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev && \
+apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-dev && \
 rm -rf /var/lib/apt/lists/*
   
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("devtools","immunarch","igraph","shiny","BiocManager"))'
