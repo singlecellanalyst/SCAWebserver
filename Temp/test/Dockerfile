@@ -7,11 +7,11 @@ COPY server.R /srv/shiny-server/test/
 RUN apt-get update && \
 apt-get upgrade -y && \
 apt-get clean && \
-# apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev && \
+apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev && \
 rm -rf /var/lib/apt/lists/*
   
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("immunarch","shiny"))'
-RUN Rscript -e 'packages <- c("immunarch","shiny"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("immunarch","igraph","shiny"))'
+RUN Rscript -e 'packages <- c("immunarch","igraph","shiny"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test
