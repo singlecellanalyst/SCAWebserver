@@ -13,9 +13,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-RUN Rscript -e 'install.packages(c("Rtools","devtools"));url <- "https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz"; pkgFile <- "akmedoids_1.3.0.tar.gz"; download.file(url = url, destfile = pkgFile); install.packages(pkgs=pkgFile, type="source", repos=NULL)'
+RUN Rscript -e 'install.packages(options(install.packages.compile.from.source = "always");"https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz", type = "both")'
 
-RUN Rscript -e 'install.packages(cran <- c("shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","remotes","ggplot2","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","dplyr","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","BiocManager","DT","Seurat","rJava"))'
+RUN Rscript -e 'install.packages(cran <- c("devtools","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","remotes","ggplot2","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","dplyr","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","BiocManager","DT","Seurat","rJava"))'
 
 RUN Rscript -e 'BiocManager::install(c("flowCore","limma","Biobase","FlowSOM","ConsensusClusterPlus","ComplexHeatmap"))'
 
