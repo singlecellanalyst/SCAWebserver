@@ -7,8 +7,6 @@ COPY server.R /srv/shiny-server/test/
 RUN apt-get update && \
 apt-get upgrade -y && \
 apt-get clean && \
-apt-get install -y openjdk-17-jre-headless && \
-apt-get install -y tcl tk && \
 apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev && \
 rm -rf /var/lib/apt/lists/*
   
