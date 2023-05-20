@@ -19,12 +19,14 @@ RUN which java
 RUN ls -lrt /usr/bin/java
 # RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-17-openjdk-amd64/jre
 # ENV LD_LIBRARY_PATH=/usr/lib/jvm/java-17-openjdk-amd64/
-
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","rJava","xlsx","devtools","remotes","plot3D"))'
-
 # Sys.setenv("JAVA_HOME" = "/usr/lib/jvm/java-17-openjdk-amd64/");
 
-RUN Rscript -e 'packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","devtools","remotes","plot3D"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","immunarch","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","webshot","ggthemes","plot3D","ggalluvial","dplyr","alluvial","harmony","ggrepel","RColorBrewer","circlize","scales","gridExtra","hdf5r","ggraph","assertthat","DT","ggplot2","patchwork","ggridges","reshape2","xlsx","BiocManager","httr","rJava","Seurat","devtools","remotes"))'
+
+RUN Rscript -e 'BiocManager::install(c("monocle","SingleCellExperiment","powerTCR","SingleR","ComplexHeatmap"), ask = F)'
+RUN Rscript -e 'devtools::install_github("ncborcherding/scRepertoire", force = T)'
+
+RUN Rscript -e 'packages <- c("igraph","immunarch","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","webshot","ggthemes","plot3D","ggalluvial","dplyr","alluvial","harmony","ggrepel","RColorBrewer","circlize","scales","gridExtra","hdf5r","ggraph","assertthat","DT","ggplot2","patchwork","ggridges","reshape2","xlsx","BiocManager","httr","rJava","Seurat","devtools","remotes","monocle","SingleCellExperiment","powerTCR","SingleR","ComplexHeatmap","scRepertoire"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test
