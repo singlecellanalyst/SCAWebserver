@@ -15,7 +15,7 @@ rm -rf /var/lib/apt/lists/*
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes","dplyr","ggplot2","rgl","R.utils"))'
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","patchwork","ggridges","ggthemes","gridExtra","reshape2","ggrepel","scales","xlsx","shinythemes","shinyWidgets","shinyscreenshot","shinyjs","pheatmap","cowplot","ape","data.table","intervalaverage","RColorBrewer","adegenet","fastcluster"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","patchwork","ggridges","ggthemes","gridExtra","reshape2","ggrepel","scales","xlsx","shinythemes","shinyWidgets","shinyscreenshot","shinyjs","pheatmap","cowplot","ape","data.table","intervalaverage","RColorBrewer","adegenet","fastcluster","umap"))'
 
 RUN Rscript -e 'BiocManager::install(c("GenomicRanges","ComplexHeatmap","ggtree"),ask = F)'
 

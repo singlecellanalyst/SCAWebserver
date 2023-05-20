@@ -34,6 +34,7 @@ library("ggtree")
 library("data.table")
 library("Seurat")
 library("fastcluster")
+library("umap")
 
 source("DB/SCA_scCNV_RShiny_Functions_V1.0.0.R")
 color_conditions <- color_ini()
@@ -207,7 +208,7 @@ shinyServer(function(input, output, session) {
         temp <- current[which(tolower(current$Cell_Ploidy) == "diploid" & current$event_confidence > 100),]
         temp <- rbind(temp, current[which(tolower(current$Cell_Ploidy) != "diploid" & current$event_confidence > 50),])
         temp <- rbind(temp, current[which(current$range %in% temp$range & !current$CID %in% temp$CID),])
-        temp <- reshape2::dcast(temp, formula = range~id, value.var = "Region_type_numeric")
+        temp <- dcast(temp, formula = range~id, value.var = "Region_type_numeric")
         temp[is.na(temp)] <- 0
         row.names(temp) <- temp$range
         temp <- temp[,grep("range", colnames(temp), ignore.case = T, invert = T)]
@@ -323,7 +324,7 @@ shinyServer(function(input, output, session) {
       temp <- NULL
     }
     
-    cell_binary_cnv <- reshape2::dcast(melt_cell_binary_cnv, cell_id ~ CNV_Event, value.var = "Count")
+    cell_binary_cnv <- dcast(melt_cell_binary_cnv, cell_id ~ CNV_Event, value.var = "Count")
     cell_binary_cnv[is.na(cell_binary_cnv)] <- 0
     row.names(cell_binary_cnv) <- cell_binary_cnv$cell_id
     cell_binary_cnv <- cell_binary_cnv[,grep("cell_id", colnames(cell_binary_cnv), ignore.case = T, invert = T)]
@@ -346,7 +347,7 @@ shinyServer(function(input, output, session) {
     hc_cnv <- hclust(dist(t(cell_binary_cnv)), method='complete')
     binary_cnv_events <- cell_binary_cnv
     binary_cnv_events$cell_id <- row.names(cell_binary_cnv)
-    binary_cnv_events <- reshape2::melt(binary_cnv_events)
+    binary_cnv_events <- melt(binary_cnv_events)
     colnames(binary_cnv_events) <- c("cell_id","CNV_Event","Count")
     binary_cnv_events$Count <- factor(binary_cnv_events$Count)
     binary_cnv_events$CNV_Event <- factor(binary_cnv_events$CNV_Event, levels = colnames(cell_binary_cnv)[hc_cnv$order])
@@ -431,7 +432,7 @@ shinyServer(function(input, output, session) {
     cn_clusters$Cluster <- dapc_out$assign[match(cn_clusters$cell_id,row.names(dapc_out$posterior))]
     cn_clusters$copy_number <- round(data_summary$mean_ploidy)[match(cn_clusters$cell_id, paste(data_summary$Sample,data_summary$cell_id,sep = "_"))]
     cn_clusters <- cn_clusters[which(!is.na(cn_clusters$Cluster) & !is.na(cn_clusters$copy_number)),]
-    dcast_cn_clusters <- reshape2::dcast(cn_clusters, cell_id ~ Cluster, value.var = "copy_number")
+    dcast_cn_clusters <- dcast(cn_clusters, cell_id ~ Cluster, value.var = "copy_number")
     dcast_cn_clusters[is.na(dcast_cn_clusters)] <- 0
     row.names(dcast_cn_clusters) <- dcast_cn_clusters$cell_id
     dcast_cn_clusters <- dcast_cn_clusters[,grep("cell_id", colnames(dcast_cn_clusters), ignore.case = T, invert = T)]
