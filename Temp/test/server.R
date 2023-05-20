@@ -1,4 +1,4 @@
-packages <- c("shiny","fastcluster"); lapply(packages, library, character.only = TRUE)
+packages <- c("shiny","terra"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
