@@ -279,7 +279,6 @@ shinyServer(function(input, output, session) {
         # imm_cl_tsne <- geneUsageAnalysis(current_gu, "js+tsne+kmeans", .k = length(unique(contig_monarch$meta$CELL_TYPE)), .perp = .01, .verbose = F)
         p1 <- vis(imm_cl_pca, .plot = "clust") + ggtitle(paste("PCA: ", toupper(all_genes[j]), "\n(JS-DIVERGENCE+PCA+K-MEANS)", sep = ""))
         p2 <- vis(imm_cl_mds, .plot = "clust") + ggtitle(paste("MDS: ", toupper(all_genes[j]), "\n(JS-DIVERGENCE+MDS+K-MEANS)", sep = ""))
-        # p3 <- vis(imm_cl_tsne, .plot = "clust") + ggtitle(paste("tSNE: ", toupper(all_genes[j]), "\n(JS-DIVERGENCE+tSNE+K-MEANS)", sep = ""))
         p12plots[[j]] <- p1+p2
         names(p12plots)[j] <- all_genes[j]
       }
