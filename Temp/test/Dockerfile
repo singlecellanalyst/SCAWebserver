@@ -13,20 +13,10 @@ apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-d
 apt-get install -y tcl tk && \
 rm -rf /var/lib/apt/lists/*
 
-# apt-get install -y openjdk-17-jre-headless && \
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz")'
 
-RUN which java
-RUN ls -lrt /usr/bin/java
-# RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-17-openjdk-amd64/jre
-# ENV LD_LIBRARY_PATH=/usr/lib/jvm/java-17-openjdk-amd64/
-# Sys.setenv("JAVA_HOME" = "/usr/lib/jvm/java-17-openjdk-amd64/");
-
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","immunarch","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","webshot","ggthemes","plot3D","ggalluvial","dplyr","alluvial","harmony","ggrepel","RColorBrewer","circlize","scales","gridExtra","hdf5r","ggraph","assertthat","DT","ggplot2","patchwork","ggridges","reshape2","xlsx","BiocManager","httr","rJava","Seurat","devtools","remotes"))'
-
-RUN Rscript -e 'BiocManager::install(c("monocle","SingleCellExperiment","powerTCR","SingleR","ComplexHeatmap"), ask = F)'
-RUN Rscript -e 'devtools::install_github("ncborcherding/scRepertoire", force = T)'
-
-RUN Rscript -e 'packages <- c("igraph","immunarch","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","webshot","ggthemes","plot3D","ggalluvial","dplyr","alluvial","harmony","ggrepel","RColorBrewer","circlize","scales","gridExtra","hdf5r","ggraph","assertthat","DT","ggplot2","patchwork","ggridges","reshape2","xlsx","BiocManager","httr","rJava","Seurat","devtools","remotes","monocle","SingleCellExperiment","powerTCR","SingleR","ComplexHeatmap","scRepertoire"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'packages <- c("akmedoids","shiny"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test
