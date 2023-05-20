@@ -661,13 +661,14 @@ shinyServer(function(input, output, session) {
     showModal(modalDialog("Plotting figure 8..", footer=NULL))
     tree_est <- data()[['tree_est']]
     p <- ggtree(tree_est, layout="daylight",
-                branch.length = c(tree_est$plotx$Size/300,rep(min(tree_est$plotx$Size/300),(nrow(tree_est$edge)+1) - nrow(tree_est$plotx))),
+                # branch.length = c(tree_est$plotx$Size/300,rep(min(tree_est$plotx$Size/300),(nrow(tree_est$edge)+1) - nrow(tree_est$plotx)))
                 aes(color = group,
-                    size = c(tree_est$plotx$Size/50,rep(min(tree_est$plotx$Size/100),(nrow(tree_est$edge)+1) - nrow(tree_est$plotx))))) + 
+                    size = c(tree_est$plotx$Size,rep(min(tree_est$plotx$Size),(nrow(tree_est$edge)+1) - nrow(tree_est$plotx))))) + 
       geom_tiplab(hjust = -2, offset=.1) +
       scale_color_manual(values = data()[['cluster_colors']]) +
-      theme(legend.position="none") +
-      scale_size_continuous()
+      theme(legend.position="right") +
+      scale_size_continuous()+
+      guides(size=guide_legend(title="Num(CNV)"), color=guide_legend(title="Cluster"))
     removeModal()
     return(p)
     
