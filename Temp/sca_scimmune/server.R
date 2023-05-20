@@ -622,9 +622,8 @@ shinyServer(function(input, output, session) {
     
     removeModal()
     
-    showModal(modalDialog("Running scRNA-Seq..", footer=NULL, easyClose = F))
-    
     if(length(rna_list) > 0){
+      showModal(modalDialog("Running scRNA-Seq..", footer=NULL, easyClose = F))
       data_current <- NULL
       print("rna_pheno:")
       print(nrow(rna_pheno))
@@ -683,6 +682,10 @@ shinyServer(function(input, output, session) {
           x <- RunPCA(x, npcs = 30, verbose = FALSE, features = VariableFeatures(x))
         })
         
+        removeModal()
+        
+        showModal(modalDialog("Running scRNA-Seq integration..", footer=NULL, easyClose = F))
+        
         if(toupper(integration_method) == "SEURAT" | is.null(integration_method)){
           red_method <- "pca"
           integrative_features <- SelectIntegrationFeatures(object.list = data_current)
@@ -724,6 +727,10 @@ shinyServer(function(input, output, session) {
       
       Idents(data) <- "seurat_clusters"
       DefaultAssay(data) <- "RNA"
+      
+      removeModal()
+      showModal(modalDialog("Running scRNA-Seq differential expresion analysis..", footer=NULL, easyClose = F))
+      
       print("Running differential expresion analysis..")
       cmarkers <- NULL
       cmarkers <- FindAllMarkers(data, min.pct = 0.5, logfc.threshold = 0.25)
@@ -971,6 +978,9 @@ shinyServer(function(input, output, session) {
       p40plots <- adjust_theme(p40plots)
       
     }
+    
+    removeModal()
+    showModal(modalDialog("Done! Preparing output..", footer=NULL, easyClose = F))
     
     results <- NULL
     results$contig_monarch <- contig_monarch
