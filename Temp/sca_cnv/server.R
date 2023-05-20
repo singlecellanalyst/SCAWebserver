@@ -33,6 +33,7 @@ library("reshape2")
 library("ggtree")
 library("data.table")
 library("Seurat")
+library("fastcluster")
 
 source("DB/SCA_scCNV_RShiny_Functions_V1.0.0.R")
 color_conditions <- color_ini()
@@ -211,7 +212,7 @@ shinyServer(function(input, output, session) {
         start_time <- Sys.time()
         temp <- as(as.matrix(temp),"CsparseMatrix")
         print("before clustering:")
-        hc <- fastcluster::hclust(dist(t(temp)), method='complete')
+        hc <- hclust(dist(t(temp)), method='complete')
         print("after clustering:")
         end_time <- Sys.time()
         print(end_time - start_time)
@@ -380,7 +381,7 @@ shinyServer(function(input, output, session) {
         row.names(x) <- x$range
         x <- x[,which(colnames(x) != "range")]
         x[is.na(x)] <- 0
-        hc <- fastcluster::hclust(dist(t(x)), method='complete')
+        hc <- hclust(dist(t(x)), method='complete')
         x <- data.frame(Cluster = unique(temp[[i]]$Cluster), cell_id = colnames(x)[hc$order])
         temp[[i]] <- x
       }

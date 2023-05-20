@@ -22,7 +22,7 @@ RUN Rscript -e 'BiocManager::install(c("GenomicRanges","ComplexHeatmap","ggtree"
 RUN Rscript -e 'devtools::install_github(repo = "jmw86069/jamba",force = T)'
 RUN Rscript -e 'devtools::install_github(repo = "jmw86069/splicejam",force = T)'
 
-RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","dplyr","ggplot2","rgl","R.utils","Seurat","patchwork","ggridges","ggthemes","gridExtra","reshape2","ggrepel","scales","xlsx","shinythemes","shinyWidgets","shinyscreenshot","shinyjs","pheatmap","cowplot","ape","data.table","intervalaverage","RColorBrewer","adegenet","GenomicRanges","ComplexHeatmap","ggtree","jamba","splicejam"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","dplyr","ggplot2","rgl","R.utils","Seurat","patchwork","ggridges","ggthemes","gridExtra","reshape2","ggrepel","scales","xlsx","shinythemes","shinyWidgets","shinyscreenshot","shinyjs","pheatmap","cowplot","ape","data.table","intervalaverage","RColorBrewer","adegenet","GenomicRanges","ComplexHeatmap","ggtree","jamba","splicejam","fastcluster"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/scasccnv
