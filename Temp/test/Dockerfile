@@ -20,11 +20,11 @@ RUN ls -lrt /usr/bin/java
 # RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-17-openjdk-amd64/jre
 # ENV LD_LIBRARY_PATH=/usr/lib/jvm/java-17-openjdk-amd64/
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","rJava","xlsx","devtools","remotes","Seurat"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("igraph","shiny","shinyjs","BiocManager","rJava","xlsx","devtools","remotes","plot3D"))'
 
 # Sys.setenv("JAVA_HOME" = "/usr/lib/jvm/java-17-openjdk-amd64/");
 
-RUN Rscript -e 'packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","devtools","remotes","Seurat"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","devtools","remotes","plot3D"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test

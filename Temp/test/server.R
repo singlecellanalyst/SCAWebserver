@@ -1,4 +1,4 @@
-packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"); lapply(packages, library, character.only = TRUE)
+packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","plot3D","devtools","remotes"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
