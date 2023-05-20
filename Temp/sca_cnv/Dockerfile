@@ -1,4 +1,4 @@
-FROM rocker/shiny:lascasccnv
+FROM rocker/shiny:latest
 
 COPY server.R /srv/shiny-server/scasccnv/
   COPY ui.R /srv/shiny-server/scasccnv/
