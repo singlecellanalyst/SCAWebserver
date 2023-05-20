@@ -22,9 +22,9 @@ RUN ls -lrt /usr/bin/java
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("remotes","devtools","BiocManager","R.utils"))'
 RUN Rscript -e 'devtools::install_github("thomasp85/patchwork",force = T)'
-RUN Rscript -e 'BiocManager::install(c("AnnotationFilter","BiocGenerics","GenomicFeatures","GenomicRanges","IRanges","Rsamtools","S4Vectors","ggbio","motifmatchr","AnnotationDbi","Seurat","GenomeInfoDb","JASPAR2020","TFBSTools","EnsDb.Hsapiens.v86","BSgenome.Hsapiens.UCSC.hg38","EnsDb.Hsapiens.v75","BSgenome.Hsapiens.UCSC.hg19"), ask = F)'
+RUN Rscript -e 'BiocManager::install(c("AnnotationFilter","BiocGenerics","GenomicFeatures","GenomicRanges","IRanges","Rsamtools","S4Vectors","ggbio","motifmatchr","AnnotationDbi","Seurat","GenomeInfoDb","JASPAR2020","TFBSTools","EnsDb.Hsapiens.v86","BSgenome.Hsapiens.UCSC.hg38","EnsDb.Hsapiens.v75","BSgenome.Hsapiens.UCSC.hg19","ComplexHeatmap"), ask = F)'
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("shiny","patchwork","hdf5r","ComplexHeatmap","rJava"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("shiny","patchwork","hdf5r","rJava"))'
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("Signac")'
 
