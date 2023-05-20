@@ -1,4 +1,4 @@
-packages <- c("shiny","BiocManager","devtools","remotes","ggplot2","SDMTools","shiny","shinyjs","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava","cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace","flowDensity","vite","FLOWMAP","CytoExploreRData","CytoExploreR"); lapply(packages, library, character.only = TRUE)
+packages <- c("shiny","flowDensity"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
