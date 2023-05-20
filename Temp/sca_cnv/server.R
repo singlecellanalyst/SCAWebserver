@@ -130,6 +130,8 @@ shinyServer(function(input, output, session) {
       print(pheno_data[i,"SAMPLE_ID"])
       showModal(modalDialog(paste("Processing sample: ", pheno_data[i,"SAMPLE_ID"], "..",sep = ""), footer=NULL))
       current_dir <- list.files(path = input_dir, pattern = pheno_data[i,grep("FILE", colnames(pheno_data), ignore.case = T)], ignore.case = T, full.names = T)
+      print("current_dir")
+      print(current_dir)
       if(length(current_dir) > 0){
         current_bed <- current_dir[grep(current_dir, pattern = "\\cnv.*calls.*bed$", ignore.case = T)][1]
         print("current_bed")
