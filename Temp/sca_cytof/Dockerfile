@@ -22,7 +22,6 @@ RUN Rscript -e 'options(install.packages.compile.from.source = "always");install
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","DT","Seurat","rJava"))'
 
 RUN Rscript -e 'BiocManager::install(c("flowCore","limma","Biobase","FlowSOM","ConsensusClusterPlus","ComplexHeatmap"), ask = F)'
-
 RUN Rscript -e 'packages <- c("shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","remotes","ggplot2","reshape2","gplots","plot3D","Rtsne","wesanderson","viridis","webshot","plotly","lattice","latticeExtra","ggpubr","plyr","umap","patchwork","dplyr","ggridges","ggthemes","gridExtra","ggrepel","scales","xlsx","devtools","DT","Seurat","rJava","flowCore","limma","Biobase","FlowSOM","ConsensusClusterPlus","ComplexHeatmap"); lapply(packages, require, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
