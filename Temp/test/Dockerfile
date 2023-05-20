@@ -26,7 +26,7 @@ RUN Rscript -e 'devtools::install_github(repo = "zunderlab/FLOWMAP",force = T)'
 RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreRData",force = T)'
 RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreR",force = T)'
 
-RUN Rscript -e 'packages <- c("akmedoids","shiny"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","ggplot2","SDMTools","shiny","shinyjs","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava","cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace","flowDensity","vite","FLOWMAP","CytoExploreRData","CytoExploreR"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test

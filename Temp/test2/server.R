@@ -1,4 +1,4 @@
-packages <- c("igraph","shiny","shinyjs","BiocManager","httr","rJava","xlsx","Seurat","devtools","remotes"); lapply(packages, library, character.only = TRUE)
+packages <- c("remotes","devtools","BiocManager","R.utils","patchwork","AnnotationFilter","BiocGenerics","GenomicFeatures","GenomicRanges","IRanges","Rsamtools","S4Vectors","ggbio","motifmatchr","AnnotationDbi","Seurat","GenomeInfoDb","JASPAR2020","TFBSTools","EnsDb.Hsapiens.v86","BSgenome.Hsapiens.UCSC.hg38","EnsDb.Hsapiens.v75","BSgenome.Hsapiens.UCSC.hg19","Signac","shiny","patchwork","hdf5r","ComplexHeatmap","rJava"); lapply(packages, library, character.only = TRUE)
 
 function(input, output) {
   
