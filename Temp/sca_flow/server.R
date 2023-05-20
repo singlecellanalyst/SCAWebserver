@@ -873,13 +873,17 @@ shinyServer(function(input, output, session) {
       print("input$p4id:")
       print(input$p4id)
       print(head(plotx))
+      clabel <- NULL
       if(input$p4id == "Batch"){
         ccols <- data()$batch_colors
-      }else{
+        clabel <- "Batch"
+      }else if(input$p4id == "Population" | input$p4id == ""){
+          clabel <- "Population"
         ccols <- data()$gating_colors
       }
+      print("Running p4 plotting..")
       p <- NULL
-      p <- ggplot(plotx, aes_string(x = "name", y = "Count", fill = input$p4id, group = "Population")) +
+      p <- ggplot(plotx, aes(x = .data[["name"]], y = .data[["Count"]], fill = .data[[clabel]], group = .data[["Population"]])) +
         geom_bar(stat="identity",alpha=0.9, size=0.5, colour = "black", position = "dodge") +
         # coord_flip() +
         theme_bw() +
@@ -887,6 +891,7 @@ shinyServer(function(input, output, session) {
         ylab("Cell Count")+xlab("Samples") +
         scale_fill_manual(values = ccols)
       p <- adjust_theme(p, legend = "bottom") + guides(fill=guide_legend(ncol=1))
+      print("Finished p4 plotting..")
       removeModal()
       return(p)
   }, height = 500, width = 900)
