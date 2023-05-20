@@ -19,7 +19,7 @@ RUN Rscript -e 'options(install.packages.compile.from.source = "always");install
 
 RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz")'
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","dplyr","patchwork","reshape2","reticulate","plotly","viridis","cowplot","plot3D","DDRTree","pheatmap","ggbeeswarm","ggthemes","gplots","gridExtra","ggpubr","lattice","HGNChelper","harmony","ggrepel","grid","metap","htmlwidgets","ggnewscale","ggupset","europepmc","dendextend","DT","R.utils","hdf5r","ggridges","scales","xlsx","ggplot2","shiny","shinythemes","shinyWidgets","shinyscreenshot","lme4","terra","ggrastr"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","dplyr","patchwork","reshape2","reticulate","plotly","viridis","cowplot","plot3D","DDRTree","pheatmap","ggbeeswarm","ggthemes","gplots","gridExtra","ggpubr","lattice","HGNChelper","harmony","ggrepel","grid","mutoss","metap","htmlwidgets","ggnewscale","ggupset","europepmc","dendextend","DT","R.utils","hdf5r","ggridges","scales","xlsx","ggplot2","shiny","shinythemes","shinyWidgets","shinyscreenshot","lme4","terra","ggrastr")'
 
 RUN Rscript -e 'BiocManager::install(c("scater","ReactomePA","DOSE","enrichplot","multtest","celldex","clusterProfiler","org.Hs.eg.db","scRNAseq","SingleR","ComplexHeatmap","BiocGenerics","DelayedArray","DelayedMatrixStats","limma","S4Vectors","SingleCellExperiment","SummarizedExperiment","batchelor","HDF5Array"),ask = F)'
 
