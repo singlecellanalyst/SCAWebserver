@@ -16,7 +16,7 @@ rm -rf /var/lib/apt/lists/*
 # apt-get install -y openjdk-17-jre-headless && \
 
 RUN which java
-RUN ls -lrt /usr/lib/jvm/java-17-openjdk-amd64/
+RUN ls -lrt /usr/bin/java
 # RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-17-openjdk-amd64/jre
 # ENV LD_LIBRARY_PATH=/usr/lib/jvm/java-17-openjdk-amd64/
 
