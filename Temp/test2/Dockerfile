@@ -1,8 +1,8 @@
 FROM rocker/shiny:latest
 
-COPY server.R /srv/shiny-server/test/
-  COPY ui.R /srv/shiny-server/test/
-  COPY DB/ /srv/shiny-server/test/DB 
+COPY server.R /srv/shiny-server/test2/
+  COPY ui.R /srv/shiny-server/test2/
+  COPY DB/ /srv/shiny-server/test2/DB 
 
 RUN apt-get update && \
 apt-get upgrade -y && \
@@ -31,7 +31,7 @@ RUN Rscript -e 'options(install.packages.compile.from.source = "always");install
 RUN Rscript -e 'packages <- c("remotes","devtools","BiocManager","R.utils","patchwork","AnnotationFilter","BiocGenerics","GenomicFeatures","GenomicRanges","IRanges","Rsamtools","S4Vectors","ggbio","motifmatchr","AnnotationDbi","Seurat","GenomeInfoDb","JASPAR2020","TFBSTools","EnsDb.Hsapiens.v86","BSgenome.Hsapiens.UCSC.hg38","EnsDb.Hsapiens.v75","BSgenome.Hsapiens.UCSC.hg19","Signac","shiny","patchwork","hdf5r","ComplexHeatmap","rJava"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
-sudo chown -R shiny:shiny /srv/shiny-server/test
+sudo chown -R shiny:shiny /srv/shiny-server/test2
 
 COPY shiny-customized.config /etc/shiny-server/shiny-server.conf
 
