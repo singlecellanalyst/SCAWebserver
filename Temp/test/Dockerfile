@@ -13,19 +13,20 @@ apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-d
 apt-get install -y tcl tk libglu1 && \
 rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes","ggplot2"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","R.utils"))'
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/SDMTools/SDMTools_1.1-221.2.tar.gz")'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/clusterCrit/clusterCrit_1.2.8.tar.gz")'
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("shiny","shinyjs","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz")'
 
-RUN Rscript -e 'BiocManager::install(c("cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace","flowDensity"),ask = F)'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","dplyr","patchwork","reshape2","Signac","reticulate","plotly","viridis","cowplot","plot3D","DDRTree","pheatmap","ggbeeswarm","ggthemes","gplots","gridExtra","ggpubr","lattice","HGNChelper","harmony","ggrepel","grid","metap","htmlwidgets","ggnewscale","ggupset","europepmc","dendextend","DT","R.utils","hdf5r","ggridges","scales","xlsx","ggplot2","shiny","shinythemes","shinyWidgets","shinyscreenshot","lme4","terra","ggrastr"))'
 
-RUN Rscript -e 'devtools::install_github("ParkerICI/vite",force = T)'
-RUN Rscript -e 'devtools::install_github(repo = "zunderlab/FLOWMAP",force = T)'
-RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreRData",force = T)'
-RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreR",force = T)'
-RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","ggplot2","SDMTools","shiny","shinyjs","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava","cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace","flowDensity","vite","FLOWMAP","CytoExploreRData","CytoExploreR"); lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'BiocManager::install(c("scater","ReactomePA","DOSE","enrichplot","multtest","celldex","clusterProfiler","org.Hs.eg.db","scRNAseq","SingleR","ComplexHeatmap","BiocGenerics","DelayedArray","DelayedMatrixStats","limma","S4Vectors","SingleCellExperiment","SummarizedExperiment","batchelor","HDF5Array"),ask = F)'
+
+RUN Rscript -e 'devtools::install_github("cole-trapnell-lab/monocle3",force = T)'
+RUN Rscript -e 'devtools::install_github(repo = "satijalab/seurat-wrappers",force = T)'
+
+RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","R.utils","Seurat","dplyr","patchwork","reshape2","Signac","reticulate","plotly","viridis","cowplot","plot3D","DDRTree","pheatmap","ggbeeswarm","ggthemes","gplots","gridExtra","ggpubr","lattice","HGNChelper","harmony","ggrepel","grid","metap","htmlwidgets","ggnewscale","ggupset","europepmc","dendextend","DT","R.utils","hdf5r","ggridges","scales","xlsx","ggplot2","shiny","shinythemes","shinyWidgets","shinyscreenshot","lme4","terra","ggrastr","scater","ReactomePA","DOSE","enrichplot","multtest","celldex","clusterProfiler","org.Hs.eg.db","scRNAseq","SingleR","ComplexHeatmap","BiocGenerics","DelayedArray","DelayedMatrixStats","limma","S4Vectors","SingleCellExperiment","SummarizedExperiment","batchelor","HDF5Array","monocle3","seurat-wrappers"); lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
 sudo chown -R shiny:shiny /srv/shiny-server/test
