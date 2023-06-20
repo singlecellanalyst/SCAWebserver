@@ -476,9 +476,11 @@ complex_heatmap <- function(x, legend_title = NULL, col_title = NULL, row_title 
                             col = rev(rainbow(10)),nrow_clus = 1, row_annot = NULL, legendtitle = "EXPRESSION"){
   library("ComplexHeatmap")
   p <- Heatmap(x, name = legend_title, col = col, row_km = nrow_clus, right_annotation = row_annot,
-               row_names_gp = gpar(fontsize = 8), row_names_side = "left",
+               row_names_gp = gpar(fontsize = 15),
+               column_names_gp = gpar(fontsize = 15),
+               row_names_side = "left",
                column_title = col_title,column_names_rot = 45,
-               heatmap_legend_param = list(title = legendtitle))
+               heatmap_legend_param = list(title = legendtitle, legend_title_gp = gpar(fontsize = 15), labels_gp = gpar(fontsize = 15)))
   return(p)
 }
 
