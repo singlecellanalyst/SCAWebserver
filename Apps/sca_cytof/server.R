@@ -162,11 +162,11 @@ shinyServer(function(input, output, session) {
       showModal(modalDialog("Please select the markers to be included in the downstream analysis before you proceed", footer=NULL, easyClose = T))
     }
 
-    if(length(input$selectmarkers) < 4 & input$submitmarkers){
-      showModal(modalDialog("Please select at least three markers before you proceed", footer=NULL, easyClose = T))
+    if(length(input$selectmarkers) < 6 & input$submitmarkers){
+      showModal(modalDialog("Please select at least five markers before you proceed", footer=NULL, easyClose = T))
     }
 
-    if(length(input$selectmarkers) >= 4 & input$submitmarkers){
+    if(length(input$selectmarkers) >= 5 & input$submitmarkers){
       updateTabsetPanel(session, "nav",selected = "section2")
       values$proceed2 <- 1
     }
