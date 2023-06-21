@@ -569,6 +569,10 @@ shinyServer(function(input, output, session) {
     set.seed(59)
     umap_out <- umap::umap(results$data[,grep("FILE|population|BARCODE", colnames(results$data), ignore.case = T, invert = T)], pca = FALSE, perplexity = 30)
     
+    removeModal()
+    
+    showModal(modalDialog("Phenotyping..", footer=NULL))
+
     plot_out <- data.frame(PC1 = pca_out$x[,1], PC2 = pca_out$x[,2],
                            UMAP1 = umap_out$layout[,1], UMAP2 = umap_out$layout[,2])
     

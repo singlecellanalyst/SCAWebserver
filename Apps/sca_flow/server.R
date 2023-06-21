@@ -756,7 +756,7 @@ shinyServer(function(input, output, session) {
         scale_fill_viridis(option = "A", discrete = T)+
         ggtitle(paste("Frequency of Samples in Each Cluster: ", results$project_name, "\n(Labels in each stacked element: Cell Number(Proportion))",sep = ""))+
         theme_classic()+
-        geom_text(size = 8, position = position_stack(vjust = 0.5))
+        geom_text(size = 5, position = position_stack(vjust = 0.5))
       
       p15plots <- adjust_theme(p15plots)
       
