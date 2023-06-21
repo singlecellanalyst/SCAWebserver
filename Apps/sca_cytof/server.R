@@ -480,6 +480,9 @@ shinyServer(function(input, output, session) {
       chosen_k <- input$selectclusters
     }
     
+    print("chosen_k:")
+    print(chosen_k)
+    
     code_clustering1 <- results$mc[[chosen_k]]$consensusClass
     cell_clustering1 <- code_clustering1[results$som$map$mapping[,1]]
     results$data$population <- cell_clustering1
@@ -558,6 +561,10 @@ shinyServer(function(input, output, session) {
     set.seed(59)
     pca_out <- prcomp(results$data[,grep("FILE|population|BARCODE", colnames(results$data), ignore.case = T, invert = T)], center = TRUE, scale. = FALSE)
     
+    removeModal()
+    
+    showModal(modalDialog("Running UMAP..", footer=NULL))
+
     print("Running UMAP..")
     set.seed(59)
     umap_out <- umap::umap(results$data[,grep("FILE|population|BARCODE", colnames(results$data), ignore.case = T, invert = T)], pca = FALSE, perplexity = 30)
