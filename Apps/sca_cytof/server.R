@@ -49,7 +49,7 @@ source("DB/SCA_CyTOF_RShiny_Functions_V1.0.0.R")
 color_conditions <- color_ini()
 
 # example1 <- "DB/SCA_CyTOF_Example_From_10X.zip"
-example2 <- "DB/SCA_CyTOF_Metadata_Example.csv"
+# example2 <- "DB/SCA_CyTOF_Metadata_Example.csv"
 
 ctime <- format(Sys.time(), format = "%Y%m%d%H%M%S", tz = "Europe/Stockholm")
 
@@ -69,13 +69,13 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  output$downloadExample2 <- downloadHandler(
-    filename = "SCA_CyTOF_Metadata_Example.csv",
-    content = function(file) {
-      file.copy(example2, file)
-    },
-    contentType = "text/csv"
-  )
+  # output$downloadExample2 <- downloadHandler(
+  #   filename = "SCA_CyTOF_Metadata_Example.csv",
+  #   content = function(file) {
+  #     file.copy(example2, file)
+  #   },
+  #   contentType = "text/csv"
+  # )
   
   results <- reactiveValues()
   

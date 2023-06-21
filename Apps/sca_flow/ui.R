@@ -70,8 +70,9 @@ shinyUI(fluidPage(
                         '.gz'
                     )
                 ),
-                downloadButton("downloadExample1", label = "Flow Input Example"),
+                # downloadButton("downloadExample1", label = "Flow Input Example"),
                 # downloadButton("example2", label = "gene-cell.csv example"),
+                actionButton("downloadExample1", label = "Flow Input Example", onclick=paste0("window.open('https://www.dropbox.com/s/hxas89wskoctryc/SCA_Flow_Example_From_10X.zip?dl=1','_self')")),
                 em("Alternatively, right click on the button and choose 'Save Link As'"),
                 a(
                   "(dataset taken from: Dillon Hammill,2021).",
@@ -95,7 +96,8 @@ shinyUI(fluidPage(
                         '.txt'
                     )
                 ),
-                downloadButton("downloadExample2", label = "Flow Metadata Example"),
+                # downloadButton("downloadExample2", label = "Flow Metadata Example"),
+                actionButton("downloadExample2", label = "Flow Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/s/h2m869queps5k9n/SCA_Flow_Metadata_Example.csv?dl=1','_self')")),
                 em("Alternatively, right click on the button and save link as."),
                 br(),
                 br(),
@@ -270,6 +272,16 @@ shinyUI(fluidPage(
             tabPanel(
                 "2.Diagnostic Plots",
                 value = "section2",
+                h2("Before you proceed, please select markers for the downstream analysis"),
+                pickerInput(
+                  inputId = "selectmarkers", label = "Select markers",
+                  choices = NULL,
+                  options = list(`actions-box` = TRUE, `selected-text-format` = "count > 2",
+                                 `count-selected-text` = "{0}/{1} selected"),
+                  multiple = TRUE),
+                actionButton('submitmarkers', 'RUN'),
+                br(),
+                br(),
                 h2("Diagnostic Plots"),
                 h5("Diagnostic plots showing sample distance and marker information. Channels which have no markers were removed, the remaining proceed on with the downstream analysis."),
                 br(),
@@ -319,6 +331,21 @@ shinyUI(fluidPage(
                   #plotlyOutput
                   position = "right",
                 ),
+                br(),
+                br(),
+                h3("RECOMMENDED K NUMBER OF CLUSTERS BASED ON PAC VALUE",
+                   style={'background-color:#EDF0F1;
+                       text-align: center; padding: 25px 0;border: 2px solid #D6D9DC;'}),
+                plotOutput("p101plot", width = "1400px", height = "700px"),
+                actionButton("p101plot", "Screenshot"),
+                br(),
+                br(),
+                h2("Alternatively, you could set your own clustering number to continue with the analysis:"),
+                sliderInput(
+                  inputId = "selectclusters", label = "Set an appropriate number of clusters (if set to 0, the recommended clustering number will be used)", min = 0, max = 50, value = 0, step = 1, ticks = TRUE, width = "100%"),
+                actionButton('submitclusters', 'PROCEED TO THE NEXT STEP'),
+                br(),
+                br(),
                 br(),
                 br()
             ),
