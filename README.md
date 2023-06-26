@@ -1,1 +1,1 @@
-Repository for the maintenance of webserver: www.singlecellanalyst.org
+Repository for the SingleCellAnalyst webserver: www.singlecellanalyst.org
