@@ -10,7 +10,7 @@ apt-get clean && \
 apt-get install -y default-jdk && \
 apt-get install -y r-cran-rjava && \
 apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-dev libhdf5-dev && \
-apt-get install -y tcl tk libglu1 qgis && \
+apt-get install -y tcl tk libglu1 qgis libudunits2-dev && \
 rm -rf /var/lib/apt/lists/*
 
 #RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","R.utils"))'
