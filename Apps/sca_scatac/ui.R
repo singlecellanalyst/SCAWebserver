@@ -72,7 +72,7 @@ shinyUI(fluidPage(
                 ),
                 # downloadButton("downloadExample1", label = "scATAC Input Example"),
                 # downloadButton("example2", label = "gene-cell.csv example"),
-                actionButton("example1", label = "scATAC Input Example", onclick=paste0("window.open('https://www.dropbox.com/s/vf3e2zeckbqhsfe/SCA_scATAC_Example_From_10X.zip?dl=1','_self')")),
+                actionButton("example1", label = "scATAC Input Example", onclick=paste0("window.open('https://www.dropbox.com/scl/fi/dxjqy24npqxyunhkwzjvm/SCA_scATAC_Example_From_10X.zip?rlkey=00y3b6k0d8iunxlewais2b8qz&dl=1','_self')")),
                 em("Alternatively, right click on the button and choose 'Save Link As'"),
                 a(
                   "(dataset taken from: 10X Genomics).",
