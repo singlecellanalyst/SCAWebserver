@@ -98,6 +98,7 @@ shinyUI(fluidPage(
                 ),
                 # downloadButton("downloadExample2", label = "CyTOF Metadata Example"),
                 actionButton("downloadExample2", label = "CyTOF Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/scl/fi/tf9rhijm6fvfnrh8w447h/SCA_CyTOF_Metadata_Example.csv?rlkey=9oo8jqb9nzq883u0z1158mcn1&dl=1','_self')")),
+                
                 em("Alternatively, right click on the button and save link as."),
                 br(),
                 br(),
