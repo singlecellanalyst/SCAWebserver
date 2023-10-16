@@ -48,8 +48,8 @@ Sys.setenv("DISPLAY"=":0")
 source("DB/SCA_scImmune_RShiny_Functions_V1.0.0.R")
 color_conditions <- color_ini()
 
-vdjdb <- readRDS(url("https://www.dropbox.com/s/80oyt32bkq6jegn/scIMMUNE_VDJDB.RDS?dl=1","rb"))
-hpca.se <- readRDS(url("https://www.dropbox.com/s/2xqa8a8ussh0d2n/HumanPrimaryCellAtlasData.RDS?dl=1","rb"))
+vdjdb <- readRDS(url("https://www.dropbox.com/scl/fi/3nd2i424f1rxx6yu41dh9/scIMMUNE_VDJDB.RDS?rlkey=xatje6x3zn38gi1kk1nxeh8wz&dl=1","rb"))
+hpca.se <- readRDS(url("https://www.dropbox.com/scl/fi/o1ydfb92rvq1tdwkc9mc5/HumanPrimaryCellAtlasData.RDS?rlkey=zgp1lenhwd16fvi4w5rh7kngl&dl=1","rb"))
 
 ctime <- format(Sys.time(), format = "%Y%m%d%H%M%S", tz = "Europe/Stockholm")
 
