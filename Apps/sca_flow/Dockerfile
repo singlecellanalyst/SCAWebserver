@@ -13,29 +13,24 @@ apt-get install -y git libxml2-dev libmagick++-dev gfortran libglpk-dev libgsl-d
 apt-get install -y tcl tk libglu1 qgis libudunits2-dev && \
 rm -rf /var/lib/apt/lists/*
 
-#RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","R.utils"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","R.utils"))'
 
-#RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/clusterCrit/clusterCrit_1.2.8.tar.gz")'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/clusterCrit/clusterCrit_1.2.8.tar.gz")'
 
-#RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz")'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/akmedoids/akmedoids_1.3.0.tar.gz")'
 
-#RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/SDMTools/SDMTools_1.1-221.2.tar.gz")'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages("https://cran.r-project.org/src/contrib/Archive/SDMTools/SDMTools_1.1-221.2.tar.gz")'
 
-#RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","xlsx","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","DT","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava"))'
+RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","xlsx","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","DT","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava"))'
 
-RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(c("BiocManager"))'
-RUN Rscript -e 'BiocManager::install("flowDensity", ask = F, force = TRUE)'
+RUN Rscript -e 'BiocManager::install(c("flowDensity","cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace"),ask = F)'
 
-#RUN Rscript -e 'BiocManager::install(c("cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace"),ask = F)'
+RUN Rscript -e 'devtools::install_github("ParkerICI/vite",force = T)'
+RUN Rscript -e 'devtools::install_github(repo = "zunderlab/FLOWMAP",force = T)'
+RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreRData",force = T)'
+RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreR",force = T)'
 
-#RUN Rscript -e 'devtools::install_github("ParkerICI/vite",force = T)'
-#RUN Rscript -e 'devtools::install_github(repo = "zunderlab/FLOWMAP",force = T)'
-#RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreRData",force = T)'
-#RUN Rscript -e 'devtools::install_github("DillonHammill/CytoExploreR",force = T)'
-
-#RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","clusterCrit","akmedoids","SDMTools","Seurat","xlsx","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","DT","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava","cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace","flowDensity","vite","FLOWMAPR","CytoExploreRData","CytoExploreR");lapply(packages, library, character.only = TRUE)'
-
-RUN Rscript -e 'packages <- c("flowDensity");lapply(packages, library, character.only = TRUE)'
+RUN Rscript -e 'packages <- c("shiny","BiocManager","devtools","remotes","kml","dplyr","signal","Hmisc","ggplot2","rgl","clusterCrit","akmedoids","SDMTools","Seurat","xlsx","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","DT","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava","cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace","flowDensity","vite","FLOWMAPR","CytoExploreRData","CytoExploreR");lapply(packages, library, character.only = TRUE)'
 
 RUN cd /srv/shiny-server/ && \
     sudo chown -R shiny:shiny /srv/shiny-server/scaflow
@@ -47,3 +42,4 @@ ENV SHINY_LOG_STDERR=1
 EXPOSE 3838
 
 CMD ["/usr/bin/shiny-server"]
+
