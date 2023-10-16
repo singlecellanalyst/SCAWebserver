@@ -23,9 +23,9 @@ rm -rf /var/lib/apt/lists/*
 
 #RUN Rscript -e 'options(install.packages.compile.from.source = "always");install.packages(cran <- c("Seurat","xlsx","shiny","shinyjs","shinyWidgets","shinyscreenshot","shinythemes","shinyFiles","shinydashboard","shinyalert","robustbase","rhandsontable","gridExtra","reshape2","ggridges","patchwork","gplots","plot3D","DT","umap","viridis","cowplot","gridGraphics","ggthemes","ggrepel","scales","rJava"))'
 
-RUN Rscript -e 'BiocManager::install("flowDensity"),ask = F, force = TRUE)'
+RUN Rscript -e 'BiocManager::install("flowDensity", ask = F, force = TRUE)'
 
-#RUN Rscript -e 'BiocManager::install(c("cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace",ask = F)'
+#RUN Rscript -e 'BiocManager::install(c("cytolib","flowCore","ggcyto","flowStats","openCyto","flowViz","limma","Biobase","cytofWorkflow","FlowSOM","ConsensusClusterPlus","flowWorkspace"),ask = F)'
 
 #RUN Rscript -e 'devtools::install_github("ParkerICI/vite",force = T)'
 #RUN Rscript -e 'devtools::install_github(repo = "zunderlab/FLOWMAP",force = T)'
