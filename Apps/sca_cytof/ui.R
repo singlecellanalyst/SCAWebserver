@@ -72,7 +72,7 @@ shinyUI(fluidPage(
                 ),
                 # downloadButton("downloadExample1", label = "CyTOF Input Example"),
                 # downloadButton("example2", label = "gene-cell.csv example"),
-                actionButton("downloadExample1", label = "CyTOF Input Example", onclick=paste0("window.open('https://www.dropbox.com/s/9scuva8nbw3ruqb/SCA_CyTOF_Example_From_10X.zip?dl=1','_self')")),
+                actionButton("downloadExample1", label = "CyTOF Input Example", onclick=paste0("window.open('https://www.dropbox.com/scl/fi/m503z5qi43ke5dkjc67ld/SCA_CyTOF_Example_From_10X.zip?rlkey=0u1ofiv9i9mf5jh8mgj7ohwi1&dl=1','_self')")),
                 em("Alternatively, right click on the button and choose 'Save Link As'"),
                 a(
                   "(dataset taken from: Nowicka, M., et al. (2017)).",
@@ -97,7 +97,7 @@ shinyUI(fluidPage(
                   )
                 ),
                 # downloadButton("downloadExample2", label = "CyTOF Metadata Example"),
-                actionButton("downloadExample2", label = "CyTOF Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/s/09eqd9kb4t87atj/SCA_CyTOF_Metadata_Example.csv?dl=1','_self')")),
+                actionButton("downloadExample2", label = "CyTOF Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/scl/fi/tf9rhijm6fvfnrh8w447h/SCA_CyTOF_Metadata_Example.csv?rlkey=9oo8jqb9nzq883u0z1158mcn1&dl=1','_self')")),
                 em("Alternatively, right click on the button and save link as."),
                 br(),
                 br(),
