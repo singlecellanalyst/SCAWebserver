@@ -72,7 +72,7 @@ shinyUI(fluidPage(
                 ),
                 # downloadButton("downloadExample1", label = "Flow Input Example"),
                 # downloadButton("example2", label = "gene-cell.csv example"),
-                actionButton("downloadExample1", label = "Flow Input Example", onclick=paste0("window.open('https://www.dropbox.com/s/hxas89wskoctryc/SCA_Flow_Example_From_10X.zip?dl=1','_self')")),
+                actionButton("downloadExample1", label = "Flow Input Example", onclick=paste0("window.open('https://www.dropbox.com/scl/fi/8dyi95ey7mxas82uf9cf5/SCA_Flow_Example_From_10X.zip?rlkey=jxdww5uplbt41trn5rabqaoib&dl=1','_self')")),
                 em("Alternatively, right click on the button and choose 'Save Link As'"),
                 a(
                   "(dataset taken from: Dillon Hammill,2021).",
@@ -97,7 +97,7 @@ shinyUI(fluidPage(
                     )
                 ),
                 # downloadButton("downloadExample2", label = "Flow Metadata Example"),
-                actionButton("downloadExample2", label = "Flow Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/s/h2m869queps5k9n/SCA_Flow_Metadata_Example.csv?dl=1','_self')")),
+                actionButton("downloadExample2", label = "Flow Metadata Example", onclick=paste0("window.open('https://www.dropbox.com/scl/fi/3vxoa0br5ghed9f7kvjmb/SCA_Flow_Metadata_Example.csv?rlkey=7ryrpgbegvl8v1f0so9r2jojj&dl=1','_self')")),
                 em("Alternatively, right click on the button and save link as."),
                 br(),
                 br(),
