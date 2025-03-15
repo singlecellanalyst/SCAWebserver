@@ -36,3 +36,5 @@ docker stop <container id>
 ```sh
 docker ps
 ```
+
+Supplementary materials (figures, tables, graphical abstract, slides, videos, Chinese translated version and update materials) may be found in the online DOI or iMeta Science http://www.imeta.science/.
