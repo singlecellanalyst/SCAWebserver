@@ -1,0 +1,91 @@
+---
+title: "FigS1C"
+author: "Lu Pan"
+date: "2025-03-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Codes for manuscript  Supplementary Figure 1C
+
+```{r figures1c}
+
+library(ggplot2)
+library(Seurat)
+library()
+
+query_abstracts <- NULL
+query_abstracts <- readRDS("query_abstracts_tools.RDS")
+
+plotx <- split(query_abstracts, paste(query_abstracts$omics, query_abstracts$year, sep = "|"))
+
+platformwords <- c(`R Package` = " R package| R-package",
+                   Python = "python",
+                   Webserver = "web server|web-server|webserver|web-tool|web tool",
+                   `C++` = "C\\+\\+",
+                   Matlab = "matlab")
+
+omicswords <- c(scRNASeq = "single[-| ]cell rna",
+                scATACSeq = "single[-| ]cell atac",
+                scImmune = "single[-| ]cell immune",
+                scCNV = "single[-| ]cell cnv",
+                Spatial = "spatial transcriptom",
+                Flow = "flow cytometry",
+                CyTOF = "CyTOF|Mass Cytometry")
+
+repowords <- c(Bioconductor = "bioconductor",
+               CRAN = "cran",
+               Github = "GitHub",
+               PyPI = "PyPI")
+
+tools <- unique(query_abstracts$omics)
+summary <- NULL
+for(j in 1:length(tools)){
+  ctools <- NULL
+  ctools <- query_abstracts[which(query_abstracts$omics == tools[j] & !is.na(query_abstracts$title)),]
+  
+for(i in 1:length(platformwords)){
+  cquery <- NULL
+  cquery <- ctools[grep(platformwords[i], ctools$abstract, ignore.case = T),]
+  for(k in 1:length(omicswords)){
+    current <- NULL
+    current <- cquery[grep(omicswords[k], cquery$abstract, ignore.case = T),]
+    for(l in 1:length(repowords)){
+      print(paste(j,i,k,l))
+      cfinal <- NULL
+      cfinal <- current[grep(repowords[l], current$abstract, ignore.case = T),]
+      if(nrow(cfinal) > 0){
+        print(tools[j])
+        summary <- rbind(summary, data.frame(Type = tools[j], Platform = names(platformwords)[i], Omics = names(omicswords)[k], Repository = names(repowords)[l], Count = nrow(cfinal)))
+      }
+    }
+  }
+}
+}
+
+summary$Omics <- factor(summary$Omics, levels = rev(names(omicswords)))
+saveRDS(summary, "Single-Cell_Omics_Summary_Table.RDS")
+
+# summary <- readRDS("Single-Cell_Omics_Summary_Table.RDS")
+
+```
+
+## Figure S1C
+
+```{r pressure, echo=FALSE}
+print(ggplot(summary, aes(x = Count, y= Omics, fill = Platform, label = Count)) +
+    geom_bar(stat = "identity", position = "stack") + 
+    theme_classic(base_size = 20) + 
+    scale_fill_manual(values = c("#5F75A5", "#91D376", "#D75B58", "#F5BFD3", "#A8C9EA", "#B09C16", "#F69F99", "#AC79A3", "#E89314", "#EAD256", "#78706E", "#D1A5CA", "#F7C277", "#569794", "#B9B0AC", "#99785E", "#5FA346", "#8DBCB6", "#CC7296", "#D3B6A5"))+
+    ggtitle("Publications Associated with Single-Cell Tools")+
+    xlab("Count")+ylab("Omics")+
+   theme(legend.position = "right"))
+```
+
+
+

@@ -1,0 +1,54 @@
+---
+title: "FigS1B"
+author: "Lu Pan"
+date: "2025-03-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Codes for manuscript  Supplementary Figure 1B
+
+```{r figures1b}
+
+library(ggplot2)
+library(Seurat)
+
+ckeywords <- NULL
+ckeywords$scrnaseq <- c("\"scRNAseq\" OR \"scRNA-seq\" OR \"sc-RNA-seq\" OR \"(sc)RNA-seq\" OR \"single-cell RNA sequencing\" OR \"single-cell transcriptomics\" OR \"single-cell transcriptome\" OR \"single-cell gene expression\" OR \"single-cell RNA-seq\"")
+ckeywords$scatac <- c("\"scATACseq\" OR \"scATAC-seq\" OR \"sc-ATAC-seq\" OR \"(sc)ATAC-seq\" OR \"single-cell ATAC sequencing\" OR \"single-cell chromatin accessibility\" OR \"single-cell ATAC-seq\" OR \"single-cell ATAC-seq\"")
+ckeywords$scimmune <- c("\"scImmune profiling\" OR \"scImmune-profiling\" OR \"single cell VDJ profiling\" OR \"single cell VDJ\" OR \"single-cell VDJ\" OR \"single-cell immune profiling\"")
+ckeywords$sccnv <- c("\"scCNV\" OR \"single-cell copy number variation\" OR \"single cell copy number aberrations\" OR \"single cell copy number\"")
+ckeywords$spatial <- c("\"visium spatial transcriptomics\" OR \"Spatial Transcriptomics\" OR \"Spatial Transcriptome\" OR \"spatial transcriptomic\" OR \"spatial rna seq\"")
+ckeywords$flow <- c("flow cytometry")
+ckeywords$cytof <- c("\"mass cytometry\" OR \"cytof\" OR \"mass spectrometry\"")
+ckeywords$multiomics <- c("\"single-cell Multi-omics\" OR \"single-cell multimodal\" OR \"single cell Multi-omics\" OR \"single cell Multimodal\"")
+
+plotx <- readRDS("query_years_tools.RDS")
+plotx$omics <- stringr::str_to_title(plotx$omics)
+plotx$Log10Freq <- log10(plotx$Freq)
+plotx$years <- as.numeric(as.character(plotx$years))
+plotx$omics[which(plotx$omics == "Multitools")] <- "Multiomics Tools"
+plotx$omics[which(plotx$omics == "Sctools")] <- "Single-cell Omics Tools"
+
+```
+
+## Figure S1B
+
+```{r pressure, echo=FALSE}
+print(ggplot(plotx, aes(x = years, y=Freq, fill = omics)) +
+    geom_bar(stat = "identity", position = "stack") + facet_wrap(~omics, scales = "free")+
+    theme_linedraw(base_size = 18) + RotatedAxis()+ NoLegend() +
+    scale_x_continuous(breaks = pretty(as.numeric(as.character(plotx$years)), n = 10))+
+    scale_fill_manual(values = c("#5F75A5", "#91D376", "#D75B58", "#F5BFD3", "#A8C9EA", "#B09C16", "#F69F99", "#AC79A3", "#E89314", "#EAD256", "#78706E", "#D1A5CA", "#F7C277", "#569794", "#B9B0AC", "#99785E", "#5FA346", "#8DBCB6", "#CC7296", "#D3B6A5"))+
+    ggtitle("Publications Associated with Single-cell Tools")+
+    xlab("Year")+ylab("Count"))
+
+```
+
+
+
