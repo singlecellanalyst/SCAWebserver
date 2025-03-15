@@ -360,8 +360,7 @@ display: none;
 <div id="r-markdown" class="section level2">
 <h2>R Markdown</h2>
 <p>Codes for manuscript Supplementary Figure 1A</p>
-<pre class="r"><code>library(RISmed)
-library(alluvial)
+<pre class="r"><code>library(alluvial)
 
 ckeywords &lt;- NULL
 ckeywords$scrnaseq &lt;- c(&quot;\&quot;scRNAseq\&quot; OR \&quot;scRNA-seq\&quot; OR \&quot;sc-RNA-seq\&quot; OR \&quot;(sc)RNA-seq\&quot; OR \&quot;single-cell RNA sequencing\&quot; OR \&quot;single-cell transcriptomics\&quot; OR \&quot;single-cell transcriptome\&quot; OR \&quot;single-cell gene expression\&quot; OR \&quot;single-cell RNA-seq\&quot;&quot;)
@@ -381,9 +380,9 @@ for(i in 1:length(ckeywords)){
   d1 &lt;- NULL
   d2 &lt;- NULL
   d3 &lt;- NULL
-  d1 &lt;- readRDS(paste(&quot;Data/query_journals_tools_&quot;, names(ckeywords)[i], &quot;.RDS&quot;,sep = &quot;&quot;))
-  d2 &lt;- readRDS(paste(&quot;Data/query_years_tools_&quot;, names(ckeywords)[i], &quot;.RDS&quot;,sep = &quot;&quot;))
-  d3 &lt;- readRDS(paste(&quot;Data/query_abstracts_tools_&quot;, names(ckeywords)[i], &quot;.RDS&quot;,sep = &quot;&quot;))
+  d1 &lt;- readRDS(paste(&quot;../Data/query_journals_tools_&quot;, names(ckeywords)[i], &quot;.RDS&quot;,sep = &quot;&quot;))
+  d2 &lt;- readRDS(paste(&quot;../Data/query_years_tools_&quot;, names(ckeywords)[i], &quot;.RDS&quot;,sep = &quot;&quot;))
+  d3 &lt;- readRDS(paste(&quot;../Data/query_abstracts_tools_&quot;, names(ckeywords)[i], &quot;.RDS&quot;,sep = &quot;&quot;))
   query_journals &lt;- rbind(query_journals,d1)
   query_years &lt;- rbind(query_years,d2)
   query_abstracts &lt;- rbind(query_abstracts,d3)

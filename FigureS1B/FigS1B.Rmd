@@ -18,16 +18,6 @@ Codes for manuscript  Supplementary Figure 1B
 library(ggplot2)
 library(Seurat)
 
-ckeywords <- NULL
-ckeywords$scrnaseq <- c("\"scRNAseq\" OR \"scRNA-seq\" OR \"sc-RNA-seq\" OR \"(sc)RNA-seq\" OR \"single-cell RNA sequencing\" OR \"single-cell transcriptomics\" OR \"single-cell transcriptome\" OR \"single-cell gene expression\" OR \"single-cell RNA-seq\"")
-ckeywords$scatac <- c("\"scATACseq\" OR \"scATAC-seq\" OR \"sc-ATAC-seq\" OR \"(sc)ATAC-seq\" OR \"single-cell ATAC sequencing\" OR \"single-cell chromatin accessibility\" OR \"single-cell ATAC-seq\" OR \"single-cell ATAC-seq\"")
-ckeywords$scimmune <- c("\"scImmune profiling\" OR \"scImmune-profiling\" OR \"single cell VDJ profiling\" OR \"single cell VDJ\" OR \"single-cell VDJ\" OR \"single-cell immune profiling\"")
-ckeywords$sccnv <- c("\"scCNV\" OR \"single-cell copy number variation\" OR \"single cell copy number aberrations\" OR \"single cell copy number\"")
-ckeywords$spatial <- c("\"visium spatial transcriptomics\" OR \"Spatial Transcriptomics\" OR \"Spatial Transcriptome\" OR \"spatial transcriptomic\" OR \"spatial rna seq\"")
-ckeywords$flow <- c("flow cytometry")
-ckeywords$cytof <- c("\"mass cytometry\" OR \"cytof\" OR \"mass spectrometry\"")
-ckeywords$multiomics <- c("\"single-cell Multi-omics\" OR \"single-cell multimodal\" OR \"single cell Multi-omics\" OR \"single cell Multimodal\"")
-
 plotx <- readRDS("query_years_tools.RDS")
 plotx$omics <- stringr::str_to_title(plotx$omics)
 plotx$Log10Freq <- log10(plotx$Freq)

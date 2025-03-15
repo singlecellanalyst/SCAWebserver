@@ -15,7 +15,6 @@ Codes for manuscript  Supplementary Figure 1A
 
 ```{r figures1a}
 
-library(RISmed)
 library(alluvial)
 
 ckeywords <- NULL
@@ -36,9 +35,9 @@ for(i in 1:length(ckeywords)){
   d1 <- NULL
   d2 <- NULL
   d3 <- NULL
-  d1 <- readRDS(paste("Data/query_journals_tools_", names(ckeywords)[i], ".RDS",sep = ""))
-  d2 <- readRDS(paste("Data/query_years_tools_", names(ckeywords)[i], ".RDS",sep = ""))
-  d3 <- readRDS(paste("Data/query_abstracts_tools_", names(ckeywords)[i], ".RDS",sep = ""))
+  d1 <- readRDS(paste("../Data/query_journals_tools_", names(ckeywords)[i], ".RDS",sep = ""))
+  d2 <- readRDS(paste("../Data/query_years_tools_", names(ckeywords)[i], ".RDS",sep = ""))
+  d3 <- readRDS(paste("../Data/query_abstracts_tools_", names(ckeywords)[i], ".RDS",sep = ""))
   query_journals <- rbind(query_journals,d1)
   query_years <- rbind(query_years,d2)
   query_abstracts <- rbind(query_abstracts,d3)

@@ -373,17 +373,7 @@ library(Seurat)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, t</code></pre>
-<pre class="r"><code>ckeywords &lt;- NULL
-ckeywords$scrnaseq &lt;- c(&quot;\&quot;scRNAseq\&quot; OR \&quot;scRNA-seq\&quot; OR \&quot;sc-RNA-seq\&quot; OR \&quot;(sc)RNA-seq\&quot; OR \&quot;single-cell RNA sequencing\&quot; OR \&quot;single-cell transcriptomics\&quot; OR \&quot;single-cell transcriptome\&quot; OR \&quot;single-cell gene expression\&quot; OR \&quot;single-cell RNA-seq\&quot;&quot;)
-ckeywords$scatac &lt;- c(&quot;\&quot;scATACseq\&quot; OR \&quot;scATAC-seq\&quot; OR \&quot;sc-ATAC-seq\&quot; OR \&quot;(sc)ATAC-seq\&quot; OR \&quot;single-cell ATAC sequencing\&quot; OR \&quot;single-cell chromatin accessibility\&quot; OR \&quot;single-cell ATAC-seq\&quot; OR \&quot;single-cell ATAC-seq\&quot;&quot;)
-ckeywords$scimmune &lt;- c(&quot;\&quot;scImmune profiling\&quot; OR \&quot;scImmune-profiling\&quot; OR \&quot;single cell VDJ profiling\&quot; OR \&quot;single cell VDJ\&quot; OR \&quot;single-cell VDJ\&quot; OR \&quot;single-cell immune profiling\&quot;&quot;)
-ckeywords$sccnv &lt;- c(&quot;\&quot;scCNV\&quot; OR \&quot;single-cell copy number variation\&quot; OR \&quot;single cell copy number aberrations\&quot; OR \&quot;single cell copy number\&quot;&quot;)
-ckeywords$spatial &lt;- c(&quot;\&quot;visium spatial transcriptomics\&quot; OR \&quot;Spatial Transcriptomics\&quot; OR \&quot;Spatial Transcriptome\&quot; OR \&quot;spatial transcriptomic\&quot; OR \&quot;spatial rna seq\&quot;&quot;)
-ckeywords$flow &lt;- c(&quot;flow cytometry&quot;)
-ckeywords$cytof &lt;- c(&quot;\&quot;mass cytometry\&quot; OR \&quot;cytof\&quot; OR \&quot;mass spectrometry\&quot;&quot;)
-ckeywords$multiomics &lt;- c(&quot;\&quot;single-cell Multi-omics\&quot; OR \&quot;single-cell multimodal\&quot; OR \&quot;single cell Multi-omics\&quot; OR \&quot;single cell Multimodal\&quot;&quot;)
-
-plotx &lt;- readRDS(&quot;query_years_tools.RDS&quot;)
+<pre class="r"><code>plotx &lt;- readRDS(&quot;query_years_tools.RDS&quot;)
 plotx$omics &lt;- stringr::str_to_title(plotx$omics)
 plotx$Log10Freq &lt;- log10(plotx$Freq)
 plotx$years &lt;- as.numeric(as.character(plotx$years))
