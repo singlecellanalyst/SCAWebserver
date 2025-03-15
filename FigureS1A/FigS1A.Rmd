@@ -1,0 +1,82 @@
+---
+title: "FigS1A"
+author: "Lu Pan"
+date: "2025-03-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Codes for manuscript  Supplementary Figure 1A
+
+```{r figures1a}
+
+library(RISmed)
+library(alluvial)
+
+ckeywords <- NULL
+ckeywords$scrnaseq <- c("\"scRNAseq\" OR \"scRNA-seq\" OR \"sc-RNA-seq\" OR \"(sc)RNA-seq\" OR \"single-cell RNA sequencing\" OR \"single-cell transcriptomics\" OR \"single-cell transcriptome\" OR \"single-cell gene expression\" OR \"single-cell RNA-seq\"")
+ckeywords$scatac <- c("\"scATACseq\" OR \"scATAC-seq\" OR \"sc-ATAC-seq\" OR \"(sc)ATAC-seq\" OR \"single-cell ATAC sequencing\" OR \"single-cell chromatin accessibility\" OR \"single-cell ATAC-seq\" OR \"single-cell ATAC-seq\"")
+ckeywords$scimmune <- c("\"scImmune profiling\" OR \"scImmune-profiling\" OR \"single cell VDJ profiling\" OR \"single cell VDJ\" OR \"single-cell VDJ\" OR \"single-cell immune profiling\"")
+ckeywords$sccnv <- c("\"scCNV\" OR \"single-cell copy number variation\" OR \"single cell copy number aberrations\" OR \"single cell copy number\"")
+ckeywords$spatial <- c("\"visium spatial transcriptomics\" OR \"Spatial Transcriptomics\" OR \"Spatial Transcriptome\" OR \"spatial transcriptomic\" OR \"spatial rna seq\"")
+ckeywords$flow <- c("flow cytometry")
+ckeywords$cytof <- c("\"mass cytometry\" OR \"cytof\" OR \"mass spectrometry\"")
+ckeywords$multiomics <- c("\"single-cell Multi-omics\" OR \"single-cell multimodal\" OR \"single cell Multi-omics\" OR \"single cell Multimodal\"")
+
+query_journals <- NULL
+query_years <- NULL
+query_abstracts <- NULL
+
+for(i in 1:length(ckeywords)){
+  d1 <- NULL
+  d2 <- NULL
+  d3 <- NULL
+  d1 <- readRDS(paste("Data/query_journals_tools_", names(ckeywords)[i], ".RDS",sep = ""))
+  d2 <- readRDS(paste("Data/query_years_tools_", names(ckeywords)[i], ".RDS",sep = ""))
+  d3 <- readRDS(paste("Data/query_abstracts_tools_", names(ckeywords)[i], ".RDS",sep = ""))
+  query_journals <- rbind(query_journals,d1)
+  query_years <- rbind(query_years,d2)
+  query_abstracts <- rbind(query_abstracts,d3)
+  
+}
+
+plotx <- query_years
+plotx$omics <- stringr::str_to_title(plotx$omics)
+plotx$years <- as.numeric(as.character(plotx$years))
+plotx <- plyr::count(plotx, vars = c("omics","years"), wt_var = "Freq")
+plotx$Log10Freq <- log10(plotx$freq)
+plotx[which(plotx$omics == "Cytof"),"omics"] <- "CyTOF"
+plotx[which(plotx$omics == "Flow"),"omics"] <- "Flow"
+plotx[which(plotx$omics == "Multiomics"),"omics"] <- "Multi-omics"
+plotx[which(plotx$omics == "Scatac"),"omics"] <- "scATACSeq"
+plotx[which(plotx$omics == "Sccnv"),"omics"] <- "scCNV"
+plotx[which(plotx$omics == "Scimmune"),"omics"] <- "scImmune"
+plotx[which(plotx$omics == "Scrnaseq"),"omics"] <- "scRNASeq"
+
+omics <- unique(plotx$omics)
+plotx$Yearto2017 <- NULL
+for(i in 1:length(omics)){
+  plotx[which(plotx$omics == omics[i]),"Yearto2017"] <- plotx[which(plotx$omics == omics[i]),"freq"]/plotx[which(plotx$omics == omics[i] & plotx$years == 2017),"freq"]
+}
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+print(alluvial_ts(plotx[,c("omics","years","Log10Freq")], wave = .3, ygap = 5, col = c("#EC6077", "#A1ED6C", "#D5BE53", "#B57071", "#6CA09B", "#5DC3BC", "#507FD5", "#B94AA7"), plotdir = 'up', alpha=.9,
+                  grid = TRUE, grid.lwd = 5, xmargin = 0.2, lab.cex = 1, xlab = 'log10(Frequency)',
+                  ylab = 'Year', border = NA, axis.cex = 1, leg.cex = 1,
+                  leg.col='white',
+                  title = "Number of Publications Since 2009\n"))
+```
+
+
+
