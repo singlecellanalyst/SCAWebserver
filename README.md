@@ -37,6 +37,9 @@ docker stop <container id>
 docker ps
 ```
 
+### To cite us:​
+Pan, Lu, Bufu Tang, Xuan Zhang, Paolo Parini, Roman Tremmel, Joseph Loscalzo, Volker M. Lauschke et al. "Comprehensive analysis of multi‐omics single‐cell data using the single‐cell analyst." iMeta 4, no. 3 (2025): e70038.
+
 ## Folder/file information:
 - /Apps # Contains Docker files and the Docker version of SingleCellAnalyst.
 - /Data # Holds source data used for manuscript figures.
